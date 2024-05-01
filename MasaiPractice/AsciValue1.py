@@ -33,3 +33,4 @@ def solve(S,K):
 S = "All-convoYs-9-be:Alert1."
 K = 4
 solve(S,K)
+# output = Epp-gsrzsCw-3-fi:Epivx5.
