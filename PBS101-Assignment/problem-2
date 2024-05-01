@@ -1,0 +1,31 @@
+
+
+
+Pseudo Code:
+Algorithm to calculate area of rectangle and perimeter of rectangle 
+input: four variable L1, B1, L2, B2
+output: true or false based on the given condition
+
+begin: 
+      calculate area of rectangle
+      area of rectangle1 = L1 * B1
+      area of rectangle2 = L2 * B2
+
+      calculate perimeter of rectangle
+      perimeter of rectangle1 = (L1 + B1)*2
+      perimeter of rectangle2 = (L2 + B2)*2
+
+      area of rectangle1 > area of rectangle2
+      if area of rectangle1 is greater than area of rectangle2
+      print("true")
+      Else
+      print("false")
+
+      perimeter of rectangle1 > perimeter of rectangle2
+      if perimeter of rectangle1 is greater than  perimeter of rectangle2
+      print("true")
+      Else
+      print("false")
+end
+
+

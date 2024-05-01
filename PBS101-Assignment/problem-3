@@ -1,0 +1,17 @@
+
+
+
+Pseudo Code:
+Algorithm to calculate  N is Divisible by 3
+input: one variable N
+output: Yes or No based on the given condition
+
+begin: 
+      N is Divisible By 3
+      if N % 3 == 0
+      print("Yes")
+      Else
+      print("No")    
+end
+
+

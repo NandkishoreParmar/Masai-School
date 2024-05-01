@@ -1,0 +1,16 @@
+
+Pseudo Code:
+Algorithm to calculate  to find speed and check the given condition 
+input: two variable distance and time 
+output: Apply Brakes or Keep Going  based on the given condition
+
+begin: 
+     calculate speed 
+     speed = distance/time
+
+     if the speed is greater than 40
+       if speed > 40 
+       print("Apply Brake")
+       else
+       print("Keep Going")
+end
