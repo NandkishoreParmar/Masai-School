@@ -1,0 +1,25 @@
+Exercise 8
+Hexadecimal to binary conversion
+
+How do you convert the following hexadecimal numbers into binary representation?
+
+4026
+4 - 0100
+0 - 0000
+2 - 0010
+6 - 0110
+(0100000000100110)2
+
+BCA1
+B - 1011
+C - 1100
+A - 1010
+1 - 0001
+(1011110010100001)2
+
+
+98E
+9 - 1001
+8 - 1000
+E - 1110
+(100110001110)2

@@ -1,0 +1,26 @@
+Exercise 7
+Octal to binary conversion
+
+How do you convert the following octal numbers into binary equivalents?
+
+2306
+2 - 010
+3 - 011
+0 - 000
+6 - 110
+ (010011000110)2  
+
+
+
+5610
+5 - 101
+6 - 110
+1 - 001
+0 - 000
+(101110001000)2
+
+742
+7 - 111
+4 - 100
+2 - 010
+(111100010)2

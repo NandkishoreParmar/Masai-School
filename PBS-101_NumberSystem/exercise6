@@ -1,0 +1,59 @@
+Exercise 6
+Binary to octal and hexadecimal conversion
+
+How do you convert the following binary numbers into octal and hexadecimal numbers?
+
+1110001000
+first convert to decimal
+1 * 2**9 + 1 * 2**8 + 1 * 2**7 + 0 * 2**6 + 0 * 2**5 + 0 * 2**4 + 1 * 2**3 + 0 * 2**2 + 0 * 2**1 + 0 * 2**0
+512 + 256 + 128 + 0 + 0 + 0 + 8 + 0 + 0 + 0 
+    (896)10
+    decimal to octal
+    8 | 896 
+    8 | 112  0
+    8 | 14   0
+    8 | 1    6
+    8 | 0    1
+    (1600)8 
+    decimal to hexadecimal
+    16 | 896
+    16 | 56   0
+    16 | 3    8
+    16 | 0    3
+    (380)16
+
+
+
+110110101
+1 * 2**8 + 1 * 2**7 + 0 * 2**6 + 1 * 2**5 + 1 * 2**4 + 0 * 2**3 + 1 * 2**2 + 0 * 2**1 + 1 * 2**0
+  256 + 128 + 0 + 32 + 16 + 0 + 4 + 0 + 1
+  (437)10
+  decimal to octal 
+  8 | 437
+  8 | 54   5
+  8 | 6    6
+  8 | 0    6
+  (665)8
+  decimal to hexadecimal
+  16 | 437
+  16 | 27   5
+  16 | 1    B
+  16 | 0    1
+  (1B5)16
+
+
+1010100
+ 1 * 2**6 + 0 * 2**5 + 1 * 2**4 + 0 * 2**3 + 1 * 2**2 + 0 * 2**1 + 0 * 2**0
+ 64 + 0 + 16 + 0 + 4 + 0 + 0
+ (84)10
+ decimal to octal 
+ 8 | 84 
+ 8 | 10      4
+ 8 |  1      2
+ 8 |  0      1
+ (124)8
+ decimal to hexadecimal
+ 16 | 84 
+ 16 | 5   4
+ 16 | 0   5 
+ (54)16

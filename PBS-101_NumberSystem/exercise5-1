@@ -1,0 +1,25 @@
+Exercise 5
+Decimal to hexadecimal conversion
+
+How do you convert following decimal numbers into hexadecimal numbers?
+
+548
+ 16 | 548
+ 16 | 34     4
+ 16 | 2      2
+ 16 | 0      2
+ (224)16
+
+
+4052
+16 | 4052
+16 | 253     4
+16 |  15     D
+16 |  0      F
+(FD4)16
+
+58
+16 | 58 
+16 |  3   A
+16 |  0   3
+(3A)16

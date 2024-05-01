@@ -1,0 +1,13 @@
+
+Exercise 11
+Write the equivalent hexadecimal and binary values for each character of the phrase given below.
+
+"हम सब एक”
+"ह" : Hexadecimal = 0939, Binary = 0000 1001 0011 1001
+"म" : Hexadecimal = 092E, Binary = 0000 1001 0010 1110
+" " : Hexadecimal = 0020, Binary = 0000 0000 0010 0000
+"स" : Hexadecimal = 0938, Binary = 0000 1001 0011 1000
+"ब" : Hexadecimal = 092C, Binary = 0000 1001 0010 1100
+" " : Hexadecimal = 0020, Binary = 0000 0000 0010 0000
+"ए" : Hexadecimal = 090F, Binary = 0000 1001 0000 1111
+"क" : Hexadecimal = 0915, Binary = 0000 1001 0001 0101
