@@ -8,9 +8,15 @@
 
 # //output: min = 2 ;
 
-arr = [15,2,34,8,19]
-min1 = arr[0]
-for i in range(len(arr)):
-    if min1 > arr[i]:
-        min1 = arr[i]
-print(min1)
+def minimum(arr):
+    min1 = arr[0]
+    for i in range(len(arr)):
+        if min1 > arr[i]:
+            min1 = arr[i]
+    return min1
+
+arr = [15,2,34,8,19]  
+minim = minimum(arr)
+
+
+print(minim)
