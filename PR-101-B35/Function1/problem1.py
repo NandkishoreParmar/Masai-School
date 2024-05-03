@@ -17,6 +17,4 @@ def minimum(arr):
 
 arr = [15,2,34,8,19]  
 minim = minimum(arr)
-
-
 print(minim)
