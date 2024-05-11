@@ -1,6 +1,6 @@
 
 
-
+# single line input 
 num = input(" Enter a number ")
 
 print(num)
