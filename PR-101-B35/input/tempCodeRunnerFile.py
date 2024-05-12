@@ -1,8 +1,5 @@
 
+# input = 5
+# arr = 1 2 3 4 5           1+1  2+1 3+1 4+1 5+2
 
-# print(num)
-# print(type(num))   # str 
-
-# num1 = int(input())    # take input number without space 12    not 1 2 
-# print(num1)
-# print(type(num1))   # number 
+# output = 2 3 4 5 6 
