@@ -1,0 +1,52 @@
+Task 1: Create the Database
+SHOW DATABASES;
+
+CREATE DATABASE Facebook;
+
+USE Facebook;
+
+
+Task 2: Create the Table
+CREATE TABLE Post (
+    PostID INT PRIMARY KEY,
+    post_title VARCHAR(255),
+    post_description TEXT,
+    created_by VARCHAR(255),
+    created_at DATETIME,
+    post_likes INT,
+    isPublic BOOLEAN
+);
+
+DESCRIBE Post;
+
+DROP TABLE IF EXISTS Post;
+
+Task 3: Insert Data into tables
+INSERT INTO Post (PostID, post_title, post_description, created_by, created_at, post_likes, isPublic)
+VALUES
+(1, "The Joy of Painting", "Discover the simplicity and beauty of painting with this introductory guide", "Alice",
+ "2023-01-01 00:00:00", 5, true);
+
+ Task 4: Read data from the table
+SELECT * FROM Post;
+
+SELECT created_by, post_description FROM Post;
+
+
+Task 5: Update a Post
+UPDATE Post SET post_likes = 50 WHERE PostID = 8;
+
+UPDATE Post SET isPublic = false, post_description = "This is only for me..." WHERE created_by = "Charlie";
+
+Task 6: Delete a Post
+DELETE FROM Post WHERE PostID = 3;
+
+DELETE FROM Post WHERE PostID = 6 AND created_by = "Frank";
+
+Task 7: Filtering
+SELECT * FROM Post WHERE isPublic = true;
+
+SELECT * FROM Post WHERE post_likes > 15;
+
+
+

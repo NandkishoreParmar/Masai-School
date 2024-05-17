@@ -1,0 +1,41 @@
+1. What is a database?
+Ans. A database is a collection of organized data that can be easily accessed, managed, and updated. 
+It is used to store and retrieve information efficiently.
+
+2. What is DBMS?
+Ans. DBMS (Database Management System) is software that is used to manage databases. It provides an interface for 
+users to interact with the database by entering, editing, and querying data.
+
+3.What is the difference between DBMS and RDBMS?
+Ans. DBMS manages databases, while RDBMS (Relational Database Management System) is a type of DBMS that stores
+ data in a structured format using tables. RDBMS uses SQL for data manipulation.
+
+4. What is SQL?
+Ans. SQL (Structured Query Language) is a standard language used to interact with databases. It is used for tasks
+ such as querying data, updating data, and creating databases and tables.
+
+5.What is MySQL?
+Ans. MySQL is a popular open-source RDBMS that is based on SQL. It is commonly used for web applications to store 
+and retrieve data.
+
+6. What is the difference between SQL and MySQL?
+Ans. SQL is a language used to interact with databases, while MySQL is a specific implementation of an RDBMS that
+ uses SQL.
+
+7. What is Tables in SQL?
+Ans. Tables in SQL are structures that store data in rows and columns. Each table represents a specific entity, 
+and each row represents a record of that entity.
+
+8. Explain Different data types in SQL with example.
+Ans. Data types in SQL define the type of data that can be stored in a column of a table. Examples include 
+INTEGER (for whole numbers), VARCHAR (for variable-length character strings), and DATE (for dates).
+
+9. Explain different Constraints in SQL with example.
+Ans. Constraints in SQL are rules that enforce limits or conditions on data in a table. Examples include
+ PRIMARY KEY (to uniquely identify rows), FOREIGN KEY (to enforce referential integrity), and NOT NULL 
+ (to ensure a column cannot contain NULL values).
+
+10. Explain about CRUD operation and its importance in Database?
+Ans. CRUD stands for Create, Read, Update, and Delete. These operations are essential for managing data in a 
+database. Create is used to add new data, Read is used to retrieve data, Update is used to modify existing data,
+ and Delete is used to remove data. These operations ensure data integrity and consistency in a database.
