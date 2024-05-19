@@ -1,0 +1,39 @@
+
+Problem Statement
+1. Create a database called blogdatabase.
+CREATE DATABASE blogdatabase;
+
+2. Create a table called user with the following columns:
+id (int)
+name (int) -- This will be updated later
+email (varchar)
+password (varchar)
+CREATE TABLE user(
+    id int,
+    name int,
+    email varchar,
+    password varchar
+)
+
+3. Update the data type of the name column from int to varchar(50).
+ALTER TABLE user MODIFY COLUMN name VARCHAR(50);
+
+4.Add a new column called isStudent (Boolean) to the user table.
+ALTER TABLE user ADD COLUMN isStudent BOOLEAN;
+
+
+5.Insert 5 dummy data entries into the user table. Ensure the data reflects a realistic scenario where each 
+field is populated according to its data type.
+INSERT INTO user (id, name, email, password, isStudent) VALUES
+(1, 'Rahul', 'rahul@masai.com', 'pass123', TRUE),
+(2, 'Raj', 'raj@masai.com', 'pass456', FALSE),
+(3, 'Aman', 'aman@masai.com', 'pass789', TRUE),
+(4, 'Monu', 'monu@masai.com', 'pass012', FALSE),
+(5, 'Sonu', 'sonu@masai.com', 'pass345', TRUE);
+
+6.Delete all the data from the user table without deleting the table schema.
+DELETE FROM user;
+
+7.Delete the user table schema.
+DROP TABLE user;
+
