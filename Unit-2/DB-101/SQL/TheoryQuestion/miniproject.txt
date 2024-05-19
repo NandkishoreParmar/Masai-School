@@ -1,0 +1,45 @@
+
+Create a database (You need to give meaningful name)
+Create a table. Schema should be based on the UI provided. Give it meaningful name.
+Insert Dummy Data.
+Read All user Address.
+Update User Address.
+Delete User Address.
+Filter user address based on Condition.
+
+
+CREATE DATABASE delever;
+
+USE delever;
+
+CREATE TABLE productdetails(
+  first_name  varchar(100) NOT NULL,
+  last_name varchar(100) NOT NULL<
+  phone_no integer NOT NULL,
+  email varchar(50) NOT NULL, UNIQUE,
+  street_address varchar(50)
+  apt varchar(10),NULL
+  state varchar(50) NOT NULL,
+  zip_code varchar(10) NOT NULL
+);
+
+INSERT INTO productdetails(first_name, last_name, phone_no, email, street_address, apt , state, zip_code)
+values
+('Rahul', 'Choudhary', '664886655', 'rahul@example.com', '123 Machal Street', 'Apt 1', 'M.P', '90001'),
+('Ravi', 'Sagar', '9434567893', 'ravi@example.com', '125 Machal Street', 'Apt 2', 'Indore', '453001'),
+('Raju', 'Patel', '9773837382', 'raju@example.com', '127 Kalariya Street', 'Apt 3', 'kerela', '452001'),
+('Nandkishor', 'Parmar', '9111845667', 'nandkishore@example.com', '123 Betma Street', 'Apt 4', 'Bihar', '540011'),
+('Vishal', 'Choudhary', '9933445634', 'vishal@example.com', '123 Navdapanth Street', 'Apt 5', 'Jammu & Kashmir', '50001'),
+
+
+SELECT street_address, apt, state, zip_code FROM productdetails;
+
+UPDATE productdetails 
+SET address = '222 machal street' apt = '3' , state = 'Madhaya Pradesh', zip_code = '20000'
+WHERE email = 'grv@gmail.com'
+
+DELETE FROM productdetails WHERE email = 'lk@example.com';
+
+SELECT street_address, apt, state, zip_code
+FROM productdetails
+WHERE state = 'Bihar';
