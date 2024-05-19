@@ -22,5 +22,16 @@ FROM Customers
 WHERE LastName = 'Doe'
 ORDER BY CustomerID ASC;
 
-4.
+4.Print the customer ID, first name, last name, and the month name of their date of birth from the customers table. 
+Sort the results by customer ID in ascedning order
+SELECT CustomerID, FirstName, LastName, MONTHNAME(Date_of_Birth) AS Monthname FROM Customers ORDER BY CustomerID ASC;
+
+5. We are working on a page that shows all the details in OrderDetails table with 10 rows in each page.
+For example, if you use limit 10,10 it will return records 11 to 20 depending on orderby condition
+Sorting should be done on OrderDetailID and then OrderID in ascending order, Display the records on 10th page
+SELECT *
+FROM OrderDetails
+ORDER BY OrderDetailID ASC, OrderID ASC
+LIMIT 10 OFFSET 90;
+
 
