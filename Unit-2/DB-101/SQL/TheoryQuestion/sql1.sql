@@ -34,4 +34,42 @@ FROM OrderDetails
 ORDER BY OrderDetailID ASC, OrderID ASC
 LIMIT 10 OFFSET 90;
 
+6. Print all details of orders which were ordered on the 16th of December 2021 and were paid through using payment 
+with ID 4.
+Sort the result in ascending order of OrderID.
+SELECT * FROM Orders WHERE OrderDate = '2021-12-16' AND PaymentID = 4 ORDER BY OrderID ASC;
+
+7. Identify the number of orders placed in each month of the year 2021.
+Print Month followed by Number of Orders.
+Sort the result set in ascending order of Month.
+SELECT MONTH(OrderDate) AS Month,COUNT(*) AS NumberOfOrders
+FROM Orders
+WHERE YEAR(OrderDate) = 2021
+GROUP BY  MONTH(OrderDate)
+ORDER BY Month ASC;
+
+8. Identify the Month-Year combination which had the Highest Customer Acquisition.
+Print Month, Year, Number of Customers whose details were entered into the database.
+NOTE : Ouput has only one line
+SELECT MONTH(DateEntered) AS Month , Year(DateEntered) AS Year, Count(*) AS NoOFCustomer
+FROM Customers
+GROUP BY Month, Year
+ORDER BY NoOFCustomer DESC
+LIMIT 1;
+
+9. Print the Month number and number of orders ordered in that particular month for each of the months of the 
+year 2020.
+Consider the dates from OrderDate for this calculation.
+Print for only those months where the number of orders placed is less than 100.
+Sort the result set in ascending order of Month number.
+Use MONTH( Relevant_Column ) and YEAR( Relevant_Column ) to extract the month and year from the given date column
+ for generating the result set.
+SELECT MONTH(OrderDate) AS Month , COUNT(*) AS Numberoforders
+FROM Orders
+WHERE YEAR(OrderDate) = 2020
+GROUP BY Month(OrderDate)
+HAVING Numberoforders < 100
+ORDER BY Month ASC;
+ 
+
 
