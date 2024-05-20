@@ -71,5 +71,37 @@ GROUP BY Month(OrderDate)
 HAVING Numberoforders < 100
 ORDER BY Month ASC;
  
+ 10. Identify the count of orders Shipped in each of the first 6 months of 2021.
+Print the month name followed by the count of orders.
+Sort the result in descending order of Count.
+SELECT 
+    MONTHNAME(ShipDate) AS MonthName,
+    COUNT(*) AS OrderCount
+FROM 
+    Orders
+WHERE 
+    YEAR(ShipDate) = 2021
+    AND MONTH(ShipDate) BETWEEN 1 AND 6
+GROUP BY 
+    MONTHNAME(ShipDate), MONTH(ShipDate)
+ORDER BY 
+    OrderCount DESC;
 
+
+11. Print the following table which depicts the length of first names in the customers table along with the corresponding count of such names.
+Sort the result in ascending order of Length of FirstNames.
+SELECT LENGTH(FirstName) AS len_of_fn, Count(*) AS Number_of_Names
+FROM Customers
+GROUP BY LENGTH(FirstName)
+ORDER BY len_of_fn ASC;
+
+12. Write a query to calculate the total count of unique Product IDs for each order in the Orderdetails table, where the count of unique Product IDs is exactly 5.
+Print Order Id and total count.
+Sort the output in ascending order of Order ID.
+SELECT OrderID, COUNT(DISTINCT ProductID) AS num_prod
+FROM OrderDetails
+
+GROUP BY OrderId 
+HAVING  COUNT(DISTINCT ProductId) = 5
+ORDER BY OrderId ASC;
 
