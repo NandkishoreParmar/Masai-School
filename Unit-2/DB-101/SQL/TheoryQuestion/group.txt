@@ -1,0 +1,59 @@
+Give short and concise answer for all the bellow listed questions :
+1. What is GROUP BY in SQL, and provide a simple example?
+The GROUP BY clause is used to arrange identical data into groups.
+This clause is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to perform an operation on each group of data.
+The GROUP BY statement comes after any WHERE clause in the SQL query and precedes the ORDER BY and HAVING clauses.
+SELECT column_name(s), AGGREGATE_FUNCTION(column_name)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+ORDER BY column_name(s);
+
+2. What is the difference between GROUP BY and DISTINCT?
+GROUP BY
+Purpose: Groups rows that have the same values in specified columns.
+Use: Often used with aggregate functions (SUM, COUNT, AVG, etc.).
+SELECT ShipperID, SUM(OrderAmount) AS TotalAmount
+FROM Orders
+GROUP BY ShipperID;
+DISTINCT
+Purpose: Removes duplicate rows from the result set.
+Use: Returns unique rows without any aggregation.
+SELECT DISTINCT ShipperID, OrderDate
+FROM Orders;
+
+
+3. What is HAVING in SQL, and provide a simple example?
+Description :
+The HAVING clause is used in combination with the GROUP BY clause to filter groups based on a specified condition.
+It is different from the WHERE clause in that WHERE filters rows before the grouping takes place, and HAVING filters groups after the GROUP BY has been applied.
+Syntax :
+SELECT column_name(s), AGGREGATE_FUNCTION(column_name)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+
+4. What is the difference between HAVING and WHERE in SQL?
+WHERE Clause
+Purpose: Filters rows before any groupings are made.
+Use: Used with SELECT, UPDATE, DELETE statements.
+Applies to: Individual rows in the table.
+SELECT * 
+FROM Orders
+WHERE OrderAmount > 100;
+HAVING Clause
+Purpose: Filters groups after the GROUP BY clause has been applied.
+Use: Used with the GROUP BY clause.
+Applies to: Groups of rows.
+SELECT ShipperID, SUM(OrderAmount) AS TotalAmount
+FROM Orders
+GROUP BY ShipperID
+HAVING SUM(OrderAmount) > 1000;
+
+
+5. How does SQL execute queries under the hood?
+Understanding the order of execution in an SQL query is crucial for both optimizing query performance and ensuring the accuracy of the results.
+SQL does not execute statements in the order they are written in the query.
+Instead, it follows a specific sequence to execute the various components of a query.
