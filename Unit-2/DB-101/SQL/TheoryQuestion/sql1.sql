@@ -105,3 +105,52 @@ GROUP BY OrderId
 HAVING  COUNT(DISTINCT ProductId) = 5
 ORDER BY OrderId ASC;
 
+
+13. Print the days of the week(Sunday , Monday ...) ,the average order amount for that day, and the total number of orders placed on that day.
+Order the output in descending order of average order amount.
+SELECT
+    DAYNAME(OrderDate) AS DayOfWeek,
+    AVG(Total_order_amount) AS AverageOrderAmount,
+    COUNT(*) AS TotalOrders
+FROM
+    Orders
+GROUP BY
+    DayOfWeek
+ORDER BY
+    AverageOrderAmount DESC;
+
+14. What is the number of customer acquisitions for each month in the year 2021?
+Print the month number and the count of customer acquisitions. Sort the table in ascending order by mont
+SELECT     MONTH(DateEntered) AS MonthNumber,    COUNT(*) AS CustomerAcquisitions 
+FROM Customers 
+WHERE YEAR(DateEntered) = 2021 
+GROUP BY MONTH(DateEntered) 
+ORDER BY MonthNumber ASC;
+
+15.The stakeholders wants to know about those 5 Sub categories who has the most products with no discount (consider looking at their Sale_price and Market_price values).
+Give Sub Category name and total products with no discount.
+Sort the result in descending order of total Product.
+
+SELECT 
+    Sub_Category,
+    COUNT(*) AS TotalProducts
+FROM 
+    Products
+WHERE 
+    Sale_price = Market_price
+GROUP BY 
+    Sub_Category
+ORDER BY 
+    TotalProducts DESC
+LIMIT 5;
+
+16. Print the brand names and total number of products of those brands currently selling 
+at a discount of more than 50%. Sort the table in descending order based on the number of products 
+and in ascending order based on the brand names.
+SELECT 
+    Brand,
+    COUNT(*) AS TotalProducts
+FROM Products
+WHERE (Market_price - Sale_price) / Market_price > 0.5
+GROUP BY Brand
+ORDER BY TotalProducts DESC, Brand ASC;
