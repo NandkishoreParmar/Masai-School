@@ -1,0 +1,56 @@
+Give short and concise answer for all the bellow listed questions :
+1.What is an ER Diagram in Database?
+The Entity-Relationship (ER) diagram is a crucial tool in the field of database design, serving as a graphical 
+representation of the data that will be stored in a database It typically includes symbols for entities, 
+relationships, and attributes, making it easier to understand the architecture of a database.
+
+2.Explain a One to One relationship with an example.
+In a one-to-one relationship, a row in table A can be linked to no more than one row in table B, and vice versa.
+This relationship is less common and is often used to divide a table for security, to store data that is relevant
+ only for a subset of the main table, or to store information that is optional.
+Examples:
+Husband , Wife
+
+
+3.Explain a One to Many relationship with an example.
+This is the most common relationship type. In a one-to-many relationship, a row in table A can be linked to one or more rows in table B, but a row in table B can be linked to only one row in table A.
+For example, in a database for a bookstore, one author can have multiple books, but each book is written by only one author.
+Examples:
+User , comments → One user can post many Comments.
+
+4.Explain a Many to Many relationship with an example.
+In a many-to-many relationship, a row in table A can relate to one or more rows in table B, and vice versa.
+This type of relationship typically requires a third table, known as a junction or linking table, to store the associations between the two tables. For example, in a school database, a student can enroll in many courses, and a course can have many students enrolled.
+Examples:
+Student , Course
+
+5.What is a Primary key and Foreign Key?
+Primary Key (PK): A unique identifier for each record in a table. It cannot be null and must be unique. This 
+ensures that each record can be uniquely identified.
+Foreign Key (FK): A field (or collection of fields) in one table that uniquely identifies a row of another table.
+The foreign key is defined in a second table, but it refers to the primary key or a unique key in the first table.
+This creates a link between the two tables.
+
+6.What is JOIN in SQL?
+In SQL -> JOIN combine Tables in database.
+In real world different tables contain different data , When we need multiple data from different tables in one 
+query somehow we need to combine those table together and that is the concept of join.
+JOIN clause help to combine data from two or more tables , based on related column b/w them
+
+7.Explain each type of JOIN with a simple example.
+SQL joins are used to combine rows from two or more tables, based on a related column between them. Joins allow us to retrieve data that exists across multiple tables and bring it together in a single result set.
+Types of JOIN
+INNER JOIN: Selects records that have matching values in both tables.
+LEFT JOIN: Selects all records from the left table, and the matched records from the right table. If there is no match, the result is NULL on the right side.
+RIGHT JOIN: Selects all records from the right table, and the matched records from the left table. If there is no match, the result is NULL on the left side.
+FULL JOIN: Selects all records when there is a match in either left or right table.
+SELF JOIN: Selcts data in self table in two different way .
+
+8.What is the difference between Left and Right Join?
+The LEFT JOIN keyword returns all records from the left table (table1), and the matched records from the right table (table2). The result is NULL from the right side if there is no match.
+Core
+It returns all the matching value + all the value from left table
+
+The RIGHT JOIN keyword returns all records from the right table (table2), and the matched records from the left table (table1). The result is NULL from the left side if there is no match.
+Core
+It returns all the matching value + all the value from right table
