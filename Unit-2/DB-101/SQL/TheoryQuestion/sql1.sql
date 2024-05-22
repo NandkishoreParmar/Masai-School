@@ -154,3 +154,34 @@ FROM Products
 WHERE (Market_price - Sale_price) / Market_price > 0.5
 GROUP BY Brand
 ORDER BY TotalProducts DESC, Brand ASC;
+
+
+17. Get the sum of the Total order amount for each shipper for all Orders whose Total order amount would be greater than 12500.
+Sort the output in increasing order of Shipper ID.
+SELECT 
+    ShipperID,
+    SUM(Total_order_amount) AS TotalAmount
+FROM Orders
+WHERE Total_order_amount > 12500
+GROUP BY ShipperID
+ORDER BY ShipperID ASC;
+
+
+
+++++++++++++++++++++++++JOINS QUESTION++++++++++++
+1. Identify top 10 most expensive orders.
+Identify the customers who placed these orders.
+Print Customer ID, First Name, Last Name and Total Order amount in the result set.
+sort the result set in descending order of Total Order Amount.
+SELECT 
+    c.CustomerID, 
+    c.FirstName, 
+    c.LastName, 
+    o.Total_Order_Amount
+FROM 
+    Orders o
+JOIN 
+    Customers c ON o.CustomerID = c.CustomerID
+ORDER BY 
+    o.Total_Order_Amount DESC
+LIMIT 10;
