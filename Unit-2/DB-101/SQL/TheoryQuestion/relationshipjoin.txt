@@ -1,0 +1,98 @@
+1. Print the name of the employee and the company he/she works for
+SELECT e.first_name, e.last_name, c.company FROM employ e 
+join company c ON e.id = c.id;
+
+2. Retrieve the names and countries of all companies along with the total number of employees in each company
+SELECT 
+    c.company AS company_name,
+    c.country,
+    COUNT(e.id) AS total_employees
+FROM 
+    company c
+LEFT JOIN 
+    employ e ON c.id = e.id
+GROUP BY 
+    c.id, c.company, c.country;
+
+3. Print the name of the company and the average salary of that company
+SELECT 
+    c.company AS company_name,
+    AVG(e.salary) AS average_salary
+FROM 
+    company c
+LEFT JOIN 
+    employ e ON c.id = e.id
+GROUP BY 
+    c.id, c.company;
+
+4.Print the name of the company and the highest salary of that company
+SELECT c.company as company , MAX(e.salary) AS maxsalary 
+from company c left join employ e ON c.id = e.id group by c.id , c.company;
+
+5. Print all the company and all the department in that company
+SELECT 
+    c.company AS company_name,
+    e.department AS department_name
+FROM 
+    company c
+JOIN 
+    employ e ON c.id = e.id
+ORDER BY 
+    c.company, e.department;
+
+6. Print the name of the company and the number of employee in that company
+SELECT 
+    c.company AS company_name,
+    COUNT(e.id) AS employee_count
+FROM 
+    company c
+LEFT JOIN 
+    employ e ON c.id = e.id
+GROUP BY 
+    c.id, c.company;
+
+7. Print the name of the company and the highest salary of each department
+SELECT 
+    c.company AS company_name,
+    e.department AS department_name,
+    MAX(e.salary) AS highest_salary
+FROM 
+    company c
+JOIN 
+    employ e ON c.id = e.id
+GROUP BY 
+    c.id, c.company, e.id, e.department;
+
+8. Print the company name who have the highest number of employess whose name starts with the letter "S"
+SELECT 
+    c.company AS company_name,
+    COUNT(e.id) AS employee_count
+FROM 
+    company c
+JOIN 
+    employ e ON c.id = e.id
+WHERE 
+    c.company LIKE 'S%'
+GROUP BY 
+    c.id, c.company
+ORDER BY 
+    employee_count DESC
+LIMIT 1;
+
+9. Print all departments and their average salary
+SELECT 
+    e.department AS department_name,
+    AVG(e.salary) AS average_salary
+FROM 
+    employ e
+GROUP BY 
+    e.id, e.department;
+
+10. Print the company name and the employes's full name.full name will be like firstName+" "+lastName
+SELECT 
+    c.company AS company_name,
+    CONCAT(e.first_name, ' ', e.last_name) AS full_name
+FROM 
+    company c
+JOIN 
+    employ e ON c.id = e.id;
