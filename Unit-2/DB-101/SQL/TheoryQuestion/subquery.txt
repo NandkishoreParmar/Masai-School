@@ -1,0 +1,68 @@
+1.What are subqueries in SQL, and what is their importance?
+A subquery is a query within another query, allowing you to nest SQL queries. It's used to perform operations 
+that usually involve multiple queries in a single, more complex query
+Subqueries are essential in SQL because they allow for more complex and dynamic query constructions by embedding 
+one query within another. This modular approach simplifies complex operations, enhances readability, and improves 
+query efficiency. Subqueries enable dynamic filtering, aggregate calculations, and temporary table creation, making 
+them indispensable for advanced database management and manipulation tasks. Their flexibility and reusability 
+significantly contribute to the power and versatility of SQL.
+
+2.What are Views in an SQL Database, and what is the importance of a View in a Database?
+A view in SQL is a virtual table based on the result-set of a SQL query.
+It consists of a set of rows and columns, just like a real database table.
+The fields in a view are fields from one or more real tables in the database.
+You define a view with a SQL query that selects fields from one or more tables.
+A view in a database simplifies complex queries by presenting a predefined, queryable subset of data, enhancing
+ security by restricting access to specific data. It also improves data consistency and manageability by providing 
+ a consistent interface for users.
+
+3.What is a Common Table Expression (CTE) in SQL?
+Common Table Expressions (CTE) in SQL are a powerful feature that allow you to create temporary result sets which
+ can be referenced within a SELECT, INSERT, UPDATE, or DELETE statement.
+CTEs can make your queries more readable and maintainable by breaking them down into simpler, modular components.
+They are especially useful for recursive queries, which are queries that refer to themselves.
+
+4.What is the "WITH" Clause in SQL?
+WITH Clause: This clause introduces the CTE by specifying a name and a subquery defining the result set.
+WITH nvidia_gpu_products AS (
+	SELECT Company , Product , Cpu , Ram , Memory , Gpu
+    FROM laptop
+    WHERE LOWER(Gpu) LIKE "%nvidia%"
+)
+
+5.What is the difference between Tables and Views in SQL?
+Tables in SQL are structures that store actual data and occupy physical space in the database. Views, on the other 
+hand, are virtual tables created from SQL queries that present a specific, often simplified, perspective of the 
+data without storing it themselves. Tables provide the fundamental data storage, whereas views offer a way to 
+simplify and secure data access. Views can help abstract complex queries and restrict access to sensitive data.
+
+6.What is the Difference between CTE and Views in SQL?
+Common Table Expressions (CTEs) in SQL are temporary result sets defined within the execution scope of a single 
+query and are not stored in the database. Views are permanent database objects that store a predefined SQL query, 
+which can be reused across multiple queries. CTEs are typically used for complex, recursive queries and improve 
+readability, whereas views provide a consistent, reusable way to simplify complex queries and manage data access.
+
+7.How do you create a view, and how do you use it? Provide a practical example with a query.
+Syntax for creating a View :
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+Droping a view :
+DROP VIEW view_name;
+Example :
+Craete a view for all the female employee
+CREATE VIEW female_emp
+AS
+SELECT * FROM emp
+WHERE gender = "Female";
+SELECT * FROM female_emp;
+
+8.How do you create a CTE in SQL? Provide a practical example with a query.
+WITH cte_name (column1, column2, ...) AS (
+  SELECT expression1, expression2, ...
+  FROM table_name
+  [WHERE condition]
+)
+SELECT *
+FROM cte_name;
