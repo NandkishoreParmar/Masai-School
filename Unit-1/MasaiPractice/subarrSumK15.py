@@ -4,7 +4,7 @@ def has_subarray_with_sum(arr, k):
         sum_so_far = 0
         for j in range(i, n):
             sum_so_far += arr[j]
-            # print()
+            # print(sum_so_far)
             if sum_so_far == k:
                 return True
     return False
