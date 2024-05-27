@@ -146,7 +146,7 @@ FROM
 -- 13.List employees, their branches, and the total number of customers in each branch.
 SELECT
     e.EmployeeID,
-    e.FirstName,
+    e.FirstName, 
     e.LastName,
     e.Position,
     e.HireDate,
