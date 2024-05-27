@@ -56,4 +56,4 @@ Converting denormalized data to normalized data involves restructuring the datab
  relationships between tables using foreign keys, migrating data to the new tables, updating applications to work 
  with the new structure, and testing the new data model. Normalization helps improve database performance, reduce 
  storage space, and ensure data consistency. It also makes the database more flexible and easier to maintain in the 
- long run.
+ long run. 
