@@ -22,7 +22,7 @@ db.students.find()
 db.students.findOne()
 
 8.Describe the command to update the course field of a specific student named "John Doe" to "Data Science".
-db.students.updateOne({"name": "John due"}, {$set : {"courde": "Data Science"}})
+db.students.updateOne({"name": "John due"}, {$set : {"course": "Data Science"}})
 
 9.What command would you use to increment the age field of all documents in the "students" collection by 1?
 db.students.updateMany({"course": "DB101"}, {$inc: {"age": 1}})  # inc increment 
