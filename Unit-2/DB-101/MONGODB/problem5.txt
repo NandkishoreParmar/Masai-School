@@ -45,19 +45,32 @@ db.emp.updateOne({id : 4},{$pop: {projects: 1}})
 
 
 12.Construct a MongoDB query to remove the first project from the 'projects' array for the employee with id: 7.
+db.emp.updateOne({id : 7},{$pop :{projects: -1}})
 
-13.How can you remove 'projectBeta' from the 'projects' array for any employee that has it listed, for instance, the employee with id: 7?
+13.How can you remove 'projectBeta' from the 'projects' array for any employee that has it listed, for instance, 
+the employee with id: 7?
+db.emp.updateOne({id : 7},{$pull : {projects: "projectBeta"}})
+
 
 14.How do you find the employee with an id exactly equal to 5?
+db.emp.finOne({id : 5})
 
 15.Write a MongoDB query to find the employee whose department is exactly "Business Development".
+db.emp.find({department: "Business Development"})
 
 16.How can you find all employees whose gender is not "Male"?
+db.emp.find({gender: {$ne: "Male"}})
+
 
 17.Write a query to find all documents where the department is not "Sales".
+db.emp.find({department: {$ne:"Sales"}})
 
 18.Find all employees whose salary is greater than 50000.
+db.emp.find({salary: {$gt:50000}})
 
 19.How do you find all employees with an id greater than 15?
+db.emp.find({id:{$gt:15}})
+
 
 20.Write a query to find all employees whose salary is greater than or equal to 80000.
+db.emp.find({salary: {$gte: 80000}})
