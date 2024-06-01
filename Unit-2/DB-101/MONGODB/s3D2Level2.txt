@@ -1,0 +1,78 @@
+1.How can you find employees with an id greater than or equal to 10?
+db.emp.find({id:{$gte:10}})
+
+2.Find all employees who work in either the "Engineering" or "Marketing" departments.
+db.emp.find({$or: [{department:"Engineering"},{department:"Marketing"}]})
+
+3.How do you find employees whose gender is in ["Female", "Agender", "Non-binary"]?
+db.emp.find({gender : $in["Female","Agender","Non-binary"]})
+
+4.Write a query to find all employees whose department is not in ["Services", "Human Resources"].
+db.emp.find({department: {$nin : ["Services","Human Resources"]}})
+
+5.How can you find employees whose gender is not in ["Male", "Female"]?
+db.emp.find({gender : {$nin: ["Male","Female"]}})
+
+6.Find employees who have a salary greater than 40000 and work in the "Marketing" department.
+db.emp.find({$and : [{department: "Marketing"}, {salry : {$gt : 40000}}]})
+
+7.How do you find employees whose id is less than 10 and gender is "Male"?
+db.emp.find({$and : [{id:{$lt:10}}, {gender:"Male"}]})
+
+8.Write a query to find employees who either have a salary less than 30000 or work in the "Training" department.
+db.emp.find({$or: [{salary:{$lt:30000}},{department:"Training"}]})
+
+9.How can you find employees whose id is either 1, 5, or 10?
+db.emp.find({$or:[{id:1},{id:5},{id:10}]})
+
+10.Find all employees whose salary is not less than 60000.
+db.emp.find({salary:{$lt:60000}})
+
+11.How do you find employees whose id is not greater than 15?
+db.emp.find({id : {$lte:15}})
+
+12.Write a query to find employees who have the email field.
+db.emp.find({email:{$exists:true}})
+
+13.How can you find documents where the projects field does not exist (assuming some employees might have a
+ 'projects' field)?
+ db.emp.find({projects:{$exists:false}})
+
+14.Retrieve all employees who work in the 'Sales' department, earn more than $60,000, and whose name contains
+ the letter 'r'. Display their names in uppercase, ordered by salary in descending order. Limit the result to 3
+  entries.
+  db.emp.aggregate({
+    {$match: {
+        department:"Sales",
+        salary:{$gt: 60000},
+        name: {$regex: /r/i}
+    }
+    },
+    {
+        $project: {$name: $toUpper},
+        
+    }
+  })
+
+15.Find employees whose name starts with 'H' and who earn a salary that is either exactly $66,433 or more than $70,000. Display their name in uppercase, email, and salary, sorted by salary in ascending order.
+
+16.Retrieve the name, email, and department of employees whose salary is between $30,000 and $70,000 and contains the letter 'e' in their name. Display the results in uppercase and sort them by department.
+
+17.Retrieve all employees who work in the 'Sales' department, earn more than $60,000, and whose name contains the letter 'r'. Display their names in uppercase, ordered by salary in descending order. Limit the result to 3 entries.
+
+18.Find all employees whose email domain is either 'intel.com' or 'bloglines.com', whose salary is above $60,000. 
+Display their names in lowercase and order the results by name in ascending order, excluding duplicates.
+
+19.Retrieve all female employees who work in the 'Marketing' department, earn between $30,000 and $35,000, and whose name starts with the letter 'U'. Display their names in uppercase and sort them by salary in ascending order.
+
+20.Retrieve all employees whose salary is less than $50,000, whose name contains 'a', and who do not work in 'Services'. Display their names and salaries sorted by department and then by salary in descending order.
+
+21.List all employees who do not work in the 'Business Development' department, whose names do not contain the letter 'l', and whose salary is greater than $50,000. Display their names in lowercase, ordered by salary in descending order, and limit the result to 5 entries.
+
+22.List all employees who either work in the 'Sales' department and have a salary less than $65,000, 
+or work in the 'Marketing' department and have a salary greater than $30,000 but not equal to $34,337. 
+Additionally, the employee's name should either start with 'D' or end with 'o'. Display their names in 
+lowercase, ordered by salary in ascending order, and limit the result to 5 entries.
+
+23.Find all employees who work in the 'Services' department and have a salary more than $60,000, or employees who do not work in the 'Marketing' department and have a salary less than $70,000 but more than $50,000. Additionally, these employees should either have a name that starts with 'A' or their email should contain 'nps.gov'. Display their names in uppercase and emails in lowercase, ordered by name in ascending order, and limit the result to 4 entries.
+
