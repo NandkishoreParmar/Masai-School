@@ -1,0 +1,68 @@
+1. write a query to match books with the tag "psychology", project the title and price, and 
+sort by price in ascending order.
+db.libr.aggregate({
+    $match:{ 
+        tag : "psychology",
+        project: "psychology",
+        title : "psychology",
+        price: "psychology"
+
+    }
+    ,
+    {
+        $sort: {$price:1}
+    }
+    })
+
+2.write a query to match books published after 201o, project the title and author
+, and sort by publication year in descending order
+db.libr.aggregate([{$match: {published: {$gt:2010}}},
+{$sort: {price: -1}},
+{$project: {_id:0, title,author}}])
+
+3.write a query to match books with a price greater than 700, sort by price in descending order, and 
+project only the title and price 
+db.libr.aggregate([{$match: {price: {$gt:700}}},
+{$sort: {price: -1}},
+{$project: {_id:0, title,price}}])
+
+
+4 .write a query to match books with the tag "self-help", sort by publication year in 
+ascending order, and project the title and publication year
+db.libr.aggregate([{$match: {tag: "self-help"}},
+{$sort: {publication year: 1}},
+{$project: {_id:0, title,publication year}}])
+
+5.write a query to group books by publisher, sort by number of books in descending order, 
+and project the publisherand book count
+db.libr.aggregate([{$group:{_id :"publisher",count: {$sum:1}}},
+{$sort: {count:-1}},
+{}$project: {_id:0, publisher:"_id", bookcount: "$count"}])
+
+6.write a query to group books by author , sort by the number of books in descending order , 
+and project the author and bookcount
+db.libr.aggregate([{$group: {_id:"author",count:{$sum:1}}},
+{$sort: {count:-1}},
+{$project: {_id:0, author:"$_id", bookcount:"$count"}}])
+
+7. write a query to match books published after 2010, group by author
+,add a field "totalBooks" for the count of books, and project the author and totalBooks
+db.books.aggregate([
+    {
+        $match: {publicationyear: {$gt: 2010}}},
+        {$group:{_id:"$author", totalbooks:{$sum:1}}},
+        {$project: {author :"$_id",totalbooks}}
+])
+
+
+8. write a query to match books with the tag "leadership",group by publisher, add a field "averageprice" for the average price,
+and project the publisher and averageprice
+db.libr.aggregate([{
+    $match: {tags: "leadership"}},
+    {$group : {_id:"$publisher", averageprice: {$avg:"$price"}}},
+    {$project: {publisher, averageprice,_id:0}}
+
+    ])
+
+9. write a query to remove the "dimension" field from the book titled "Grit: The power of 
+passion and perseverance"

@@ -1,0 +1,34 @@
+1. find books with a price greater than or equal to  800
+db.books.find({price: {$gte: 800}})
+
+2. find books that are not in stock
+db.books.find({stock: false})
+
+3. find books with tags "self-help" or "business"
+db.books.find({$or :[{tags: "self-helf"},{tags: "business"}]})
+
+4. find books with price greater than 800 and in stock
+db.books.find({$and: [{price: {$gt: 800}},{$nin : {stock: null}}]})
+
+5.find books tags "self-help" or price less than 700
+db.books.find({$or:[{tags:"self-help"},{price:{$lt:700}}]})
+
+6. find books that have exactly three tags
+db.books.find({tags: {$size:3}})
+
+7. count of number of books that are in stock
+db.books.count({stock:true})
+
+8. update the price of "Atomic Habits" to 650
+db.books.updateOne({price:"Atomic Habits"},{$set: {price:650}})
+
+
+9. update the price of all books by incresing it by 50
+db.books.updateMany({},{$inc:{price:50}})
+
+
+10. Delete a book titled "Dare to lead"
+db.books.deleteOne({titled:"Dare to lead"})
+
+
+
