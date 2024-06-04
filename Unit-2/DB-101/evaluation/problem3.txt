@@ -56,6 +56,6 @@ db.books.aggregate([
 results to 10 books
 db.books.aggregate([
   { $match: { publication_year: { $gte: 2012 } } },
-  { $limit: 10 },
+  { $limit: 10 }, 
   { $project: { title: 1, author: 1, price: 1, discounted_price: { $subtract: ["$price", { $multiply: ["$price", 0.1] }] } } }
 ])
