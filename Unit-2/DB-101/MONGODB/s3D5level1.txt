@@ -1,0 +1,33 @@
+Problem Statement
+1.Find the count of movies released in each year.
+db.movies.aggregate([
+  {
+    $group: {
+      _id: { $year: "$released" },
+      count: { $sum: 1 } 
+    }
+  }
+])
+
+2.List movies and their release month, including the movie title and month.
+db.movies.aggregate([
+  {
+    $project: {
+      _id: 0, // Exclude document ID if not needed
+      title: 1,
+      month: { $month: "$released" }, // Extract month from release_date
+    }
+  },
+  {
+    $match: { released: { $exists: true } } // Filter for documents with release_date
+  }
+])
+
+3.Calculate the day of the year for each movie's release and display along with the movie's title.
+4.Find movies released on the first day of any month.
+5.Add 10 days to the release date of each movie and display the new date along with the title.
+6.Calculate the difference in days between the released date and tomatoes.lastUpdated date for each movie.
+7.Subtract 5 years from the release date of each movie and display the adjusted year along with the title.
+8.Group movies into buckets based on IMDb rating.
+9.Categorize movies by release century.
+10.Bucket movies based on runtime.
