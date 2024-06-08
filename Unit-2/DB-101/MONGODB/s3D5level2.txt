@@ -171,30 +171,233 @@ db.projects.aggregate([
 
 7.Detailed Sales Report for 'Engineering' Employees: Formulate a query to generate a detailed sales report for each
  sale made by employees in the 'Engineering' department, including employee name, sale amount, and office address.
-db.sales.aggregate([{$lookup:{from:"Employee",localField:"employee_id",foreignField:"_id", as :"salEmp"}},
-{$unwind:"$salEmp"},
-{$lookup:{from:"Department",localField:"department_id",foreignField:"_id", as : "depemp"}},
-{$unwind:"$depemp"},
-{$match:{"depemp.name": "Engineering"}},
-{$lookup:{from:"offices",localField:"depemp.office_id",foreignField:"_id", as :"offdep"}},
-{
-    $unwind: "$offdep"
-  },
+db.sales.aggregate([
+  // Join with Employees collection to get employee details
   {
-    $project: { 
-      _id: 0, 
-      employeeName: "$salEmp.name",
-      saleAmount: "$amount",
-      officeAddress: "$offdep.address"
+    $lookup: {
+      from: "Employee",
+      localField: "employee_id",
+      foreignField: "_id",
+      as: "employee"
+    }
+  },
+  // Unwind the employee array
+  {
+    $unwind: "$employee"
+  },
+  // Join with Departments collection to filter Engineering employees
+  {
+    $lookup: {
+      from: "Departments",
+      localField: "employee.department_id",
+      foreignField: "_id",
+      as: "department"
+    }
+  },
+  // Unwind the department array
+  {
+    $unwind: "$department"
+  },
+  // Match only employees in the 'Engineering' department
+  {
+    $match: {
+      "department.name": "Engineering"
+    }
+  },
+  // Join with Offices collection to get office address
+  {
+    $lookup: {
+      from: "offices",
+      localField: "employee.office_id",
+      foreignField: "_id",
+      as: "office"
+    }
+  },
+  // Unwind the office array
+  {
+    $unwind: "$office"
+  },
+  // Project the required fields
+  {
+    $project: {
+      _id: 0,
+      employee_name: "$employee.name",
+      sale_amount: "$amount",
+      office_address: "$office.address"
     }
   }
 ])
+
 8.Top Selling Employees in Each Department: Write a query to identify the top-selling employee in each department 
 based on total sales amount, sorting the results by department name.
+db.sales.aggregate([
+  // Join with Employees collection to get employee details
+  {
+    $lookup: {
+      from: "Employee",
+      localField: "employee_id",
+      foreignField: "_id",
+      as: "employee"
+    }
+  },
+  // Unwind the employee array
+  {
+    $unwind: "$employee"
+  },
+  // Group by employee and sum the sales amount
+  {
+    $group: {
+      _id: "$employee_id",
+      total_sales: { $sum: "$amount" },
+      employee: { $first: "$employee" }
+    }
+  },
+  // Join with Departments collection to get department details
+  {
+    $lookup: {
+      from: "Departments",
+      localField: "employee.department_id",
+      foreignField: "_id",
+      as: "department"
+    }
+  },
+  // Unwind the department array
+  {
+    $unwind: "$department"
+  },
+  // Group by department to find the top-selling employee in each department
+  {
+    $group: {
+      _id: "$department._id",
+      department_name: { $first: "$department.name" },
+      top_employee: { 
+        $first: {
+          employee_id: "$_id",
+          name: "$employee.name",
+          total_sales: "$total_sales"
+        }
+      }
+    }
+  },
+  // Sort by department name
+  {
+    $sort: { department_name: 1 }
+  },
+  // Project the required fields
+  {
+    $project: {
+      _id: 0,
+      department_name: 1,
+      top_employee: 1
+    }
+  }
+])
+
 
 9.Average Salary by Department: Create a query to calculate the average salary of employees in each department, 
 sorting the results by average salary in descending order.
+db.Employee.aggregate([
+  // Join with Departments collection to get department details
+  {
+    $lookup: {
+      from: "Departments",
+      localField: "department_id",
+      foreignField: "_id",
+      as: "department"
+    }
+  },
+  // Unwind the department array
+  {
+    $unwind: "$department"
+  },
+  // Group by department and calculate average salary
+  {
+    $group: {
+      _id: "$department._id",
+      department_name: { $first: "$department.name" },
+      average_salary: { $avg: "$salary" }
+    }
+  },
+  // Sort by average salary in descending order
+  {
+    $sort: { average_salary: -1 }
+  },
+  // Project the required fields
+  {
+    $project: {
+      _id: 0,
+      department_name: 1,
+      average_salary: 1
+    }
+  }
+])
+ 
 
 10.Most Involved Employees in Projects by Department: Formulate a query to find the employee with the highest
- number of projects in each department, including the employee's name, number of projects, and department name, sorted by the number of projects in descending order.
+ number of projects in each department, including the employee's name, number of projects, and department name,
+  sorted by the number of projects in descending order.
+db.Employee.aggregate([
+  // Project the number of projects for each employee
+  {
+    $project: {
+      name: 1,
+      department_id: 1,
+      num_projects: { $size: "$projects" }
+    }
+  },
+  // Group by department and collect employees with their project counts
+  {
+    $group: {
+      _id: "$department_id",
+      Employee: { 
+        $push: { 
+          name: "$name", 
+          num_projects: "$num_projects" 
+        }
+      }
+    }
+  },
+  // Join with Departments collection to get department details
+  {
+    $lookup: {
+      from: "Departments",
+      localField: "_id",
+      foreignField: "_id",
+      as: "department"
+    }
+  },
+  // Unwind the department array
+  {
+    $unwind: "$department"
+  },
+  // Find the employee with the highest number of projects in each department
+  {
+    $project: {
+      department_name: "$department.name",
+      top_employee: { 
+        $arrayElemAt: [
+          { $filter: {
+            input: "$Employee",
+            as: "employee",
+            cond: { $eq: [ "$employee.num_projects", { $max: "$employees.num_projects" } ] }
+          } }, 0
+        ]
+      }
+    }
+  },
+  // Unwind the top_employee array to separate fields
+  {
+    $replaceRoot: { 
+      newRoot: { 
+        department_name: "$department_name",
+        name: "$top_employee.name",
+        num_projects: "$top_employee.num_projects"
+      }
+    }
+  },
+  // Sort by number of projects in descending order
+  {
+    $sort: { num_projects: -1 }
+  }
+])
 
