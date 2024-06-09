@@ -1,0 +1,38 @@
+Problem Statement :
+1.A publishing company wants to publish a book on forts built before the 15th century but are still occupied. 
+They need a list of such forts along with their founding dates and ownership details.
+db.forts.find({
+  occupied: true,
+  "details.founding_date": { $lt: ISODate("1500-01-01") } // Before 15th century
+}, {
+  name: 1,
+  "details.founding_date": 1,
+  ownership: 1 // Projection to include ownership details
+})
+
+2.A travel blogger is compiling a list of forts with images available. They need to know which forts have more 
+than 5 images and need a list of these forts along with the image URLs.
+
+3.An environmental organization wants to study forts with a height greater than 20 feet and an area larger than 
+10 acres. They need a summary of such forts, including their height, area, and location details.
+
+4.A cultural heritage organization wants to identify forts associated with significant historical figures. 
+They need the details of forts built by any specific dynasty and the battles they were involved in.
+
+5.An educational portal wants to list all forts that are part of the "Reddi Kingdom" and were later controlled 
+by other entities. They need details of the transitions of control.
+
+6.A conservation group is planning to request funding for fort restoration. They need to identify forts that are 
+currently in ruins and have a significant historical background. They need the name, founding date, and battles/wars associated with such forts.
+
+7.A geographic information system (GIS) company wants to create a map showing the coordinates of all forts built in
+ the 14th century or earlier. They need the names and coordinates of these forts.
+
+8.A historian needs to find the details of forts which were controlled by the Government of Andhra Pradesh and have
+ been reconstructed or are in ruins. Additionally, they need the total count of such forts and their average height.
+
+9.A tourism company wants to create a tour package that includes all forts built by the Reddy Kingdom and fought 
+in at least three major battles/wars. They need a list of these forts with their details and the battles/wars they were involved in.
+
+10.An academic researcher is studying the geographical spread of forts. They need to identify all forts located 
+in districts starting with the letter 'V'. They also need the total area these forts cover combined.
