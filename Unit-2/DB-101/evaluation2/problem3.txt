@@ -1,0 +1,142 @@
+1.db.ratings.aggregate([
+  {
+    $group: {
+      _id: "$courseID",
+      avgRating: { $avg: "$rating" }
+    }
+  },
+  {
+    $lookup: {
+      from: "courses",
+      localField: "_id",
+      foreignField: "id",
+      as: "course"
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      "Course Name": "$course.name",
+      "Average Rating": { $round: ["$avgRating", 2] }
+    }
+  }
+])
+
+
+2.db.course_data.aggregate([
+  {
+    $lookup: {
+      from: "courses",
+      localField: "courseID",
+      foreignField: "id",
+      as: "course"
+    }
+  },
+  {
+    $unwind: "$course"
+  },
+  {
+    $group: {
+      _id: "$course.instructors",
+      numStudentsTaught: { $sum: 1 }
+    }
+  },
+  {
+    $lookup: {
+      from: "instructors",
+      localField: "_id",
+      foreignField: "id",
+      as: "instructor"
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      "Instructor Name": "$instructor.name",
+      "Number of Students Taught": "$numStudentsTaught"
+    }
+  }
+])
+
+
+3.var currentMonth = new Date().getMonth() + 1;
+var currentYear = new Date().getFullYear();
+
+db.course_data.aggregate([
+  {
+    $match: {
+      $expr: {
+        $and: [
+          { $eq: [{ $month: { $toDate: "$date" } }, currentMonth] },
+          { $eq: [{ $year: { $toDate: "$date" } }, currentYear] }
+        ]
+      }
+    }
+  },
+  {
+    $group: {
+      _id: "$studentID",
+      totalCoursesBought: { $sum: 1 }
+    }
+  },
+  {
+    $sort: { totalCoursesBought: -1 }
+  },
+  {
+    $limit: 3
+  },
+  {
+    $lookup: {
+      from: "students",
+      localField: "_id",
+      foreignField: "id",
+      as: "student"
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      "Student Name": "$student.name",
+      "Total Courses Bought": "$totalCoursesBought"
+    }
+  }
+])
+
+
+4.var currentYear = new Date().getFullYear();
+
+db.course_data.aggregate([
+  {
+    $match: {
+      $expr: { $eq: [{ $year: { $toDate: "$date" } }, currentYear] }
+    }
+  },
+  {
+    $group: {
+      _id: "$courseID",
+      totalBought: { $sum: 1 }
+    }
+  },
+  {
+    $lookup: {
+      from: "courses",
+      localField: "_id",
+      foreignField: "id",
+      as: "course"
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      "Course Name": "$course.name",
+      "Total Bought": "$totalBought"
+    }
+  },
+  {
+    $sort: { "Total Bought": -1 }
+  },
+  {
+    $limit: 3
+  }
+])
+

@@ -1,0 +1,128 @@
+
+
+1. list the courses that have not been rated by any students
+ db.courses.find({
+    "_id": { $nin: db.ratings.distinct("courseID") }
+}, { "name": 1, "_id": 0 })
+
+2. find the courses that have not been purchases
+db.courses.find({
+    "_id": { $nin: db.course_data.distinct("courseID") }
+}, { "name": 1, "_id": 0 })
+
+3. list all students who have purchases of course
+db.students.aggregate([
+    {
+        $lookup: {
+            from: "course_data",
+            localField: "id",
+            foreignField: "studentID",
+            as: "courses_bought"
+        }
+    },
+    {
+        $project: {
+            name: 1,
+            num_courses_bought: { $size: "$courses_bought" }
+        }
+    }
+])
+ 4. list all the courses's name 
+db.courses.aggregate([
+    {
+        $lookup: {
+            from: "ratings",
+            localField: "id",
+            foreignField: "courseID",
+            as: "ratings"
+        }
+    },
+    {
+        $match: {
+            "ratings": { $exists: true, $ne: [] }
+        }
+    },
+    {
+        $project: {
+            name: 1
+        }
+    }
+])
+
+5.list all the student's name that have most 
+db.students.aggregate([
+    {
+        $lookup: {
+            from: "ratings",
+            localField: "id",
+            foreignField: "studentID",
+            as: "ratings_given"
+        }
+    },
+    {
+        $match: {
+            "ratings_given": { $exists: false }
+        }
+    },
+    {
+        $project: {
+            name: 1
+        }
+    }
+])
+
+6.find the students who made the most 
+db.course_data.find().sort({ "date": -1 }).limit(1)
+
+7.lisst the names and qualification of instructors
+db.instructors.find({
+    "id": { $nin: db.courses.distinct("instructors") }
+}, { "name": 1, "qualification": 1, "_id": 0 })
+
+8.calculate the total number of students who have left a 
+db.ratings.distinct("studentID").length
+
+9.list the names and email addresse of instruction
+db.instructors.aggregate([
+    {
+        $lookup: {
+            from: "courses",
+            localField: "id",
+            foreignField: "instructors",
+            as: "courses_taught"
+        }
+    },
+    {
+        $match: {
+            $expr: { $gt: [{ $size: "$courses_taught" }, 1] }
+        }
+    },
+    {
+        $project: {
+            name: 1,
+            email: 1
+        }
+    }
+])
+
+10. list the names of students who have purchased the course "introduction
+ db.students.aggregate([
+    {
+        $lookup: {
+            from: "course_data",
+            localField: "id",
+            foreignField: "studentID",
+            as: "courses_bought"
+        }
+    },
+    {
+        $match: {
+            "courses_bought.courseID": db.courses.findOne({ "name": "Introduction to Programming" }).id
+        }
+    },
+    {
+        $project: {
+            name: 1
+        }
+    }
+])
