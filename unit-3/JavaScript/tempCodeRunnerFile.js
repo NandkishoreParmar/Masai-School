@@ -1,3 +1,7 @@
-(typeof str1 !== 'string' || typeof str2 !== 'string') {
-        return "Both inputs should be strings.";
-    }
+.log(countCalculation(school))
+//  Output: {  
+//   mathTeachersCount: 5,
+//   historyTeachersCount: 3,
+//   mathStudentsCount: 150,
+//   historyStudentsCount: 100
+// }
