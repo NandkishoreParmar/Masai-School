@@ -1,0 +1,57 @@
+<!-- Problem Statement
+
+
+Create a table in HTML that displays information about products, including the quantity, price per unit, and a 
+description. The table should also include a total price column that calculates the total price for each product.
+
+The table should have the following columns: "Product Name", "Quantity", "Price per Unit", "Description", and
+ "Total Price".
+The "Total Price" column should be calculated as the product of the "Quantity" and "Price per Unit" columns.
+ The "Total Price" column should span across two columns. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Name </th>
+                <th>Quantity </th>
+                <th>Price per Unit </th>
+                <th>Description </th>
+                <th>Total Price </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Product 1</td>
+                <td>2</td>
+                <td>10</td>
+                <td>This is product 1</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>Product 2</td>
+                <td>3</td>
+                <td>20</td>
+                <td>This is product 2</td>
+                <td>60</td>
+            </tr>
+            <tr>
+                <td colspan="4">Sum</td>
+                <td>80</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</body>
+
+</html>
