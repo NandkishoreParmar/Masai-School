@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+body{
+    font-family: "Open Sans", sans-serif;
+}
+#id1{
+    /* border: 2px solid red; */
+    width: 1500px;
+}
+
+div{
+    display: inline-block;
+    text-align: center;
+    box-shadow: rgba(100,100,111,0.2) 0px 7px 29px 0px;
+    margin-left: 15px;
+}
+p{
+    font-weight:lighter;
+}
+#img1{
+    width: 100%
+}
+#img2{
+    width: 50%
+}

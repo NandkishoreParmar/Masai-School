@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.main{
+            border: 2px solid;
+            max-width: 1300;
+            height: 100vh;
+            text-align: center;
+        
+        }
+        div.div{
+            border: 2px solid;
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            text-align: center;
+            margin-top: 200px;
+        
+        }
+        div.main>div.div:nth-of-type(3):hover{
+            background-color: blue;
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="div"> h1 </div>
+        <div  class="div"> h2 </div>
+        <div class="div">h3</div>
+        <div class="div">h4</div>
+        <div class="div">h5</div>
+
+    </div>
+</body>
+</html>
