@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      div.container {
+        max-width: 1300px;
+        margin: auto;
+      }
+      div.container>div.child{
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+      }
+      div.container>div.child>div.nav{
+        padding: 10px;
+        /* text-align: center */
+        justify-content: center;
+      }
+      div.container>div.child>div.nav>h1{
+        font-size: 50px;
+      }
+      /* ----------------------+ +---------------------------- */
+      nav>div.container>div.sec{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <div class="child">
+          <div class="nav">
+            <h1>meesho</h1>
+          </div>
+          <div class="nav">
+            <input type="search" name="" id="" placeholder="Try Saree,Kurti or Search by Product Code" />
+          </div>
+          <div class="nav"><i class="fa-solid fa-mobile-screen-button"></i>  <span>Download App</span></div>
+          <div class="nav"><span>Become a Supplier</span></div>
+          <div class="nav"><span>Newsroom</span></div>
+          <div class="nav"><span> <i class="fa-regular fa-user"></i> </span>
+        <p>Profile</p>
+    </div>
+          <div class="nav">
+            <span><i class="fa-solid fa-cart-shopping"></i></span>
+            <p>Cart</p>
+        </div>
+        </div>
+      </div>
+    </nav>
+    <hr>
+    <nav>
+        <div class="container">
+            <div class="sec">
+                <div class="navitems">Women Ethenic </div>
+                <div class="navitems">Women Western</div>
+                <div class="navitems">Men</div>
+                <div class="navitems">Kids</div>
+                <div class="navitems">Home & Kitchen</div>
+                <div class="navitems">Beauty & Health</div>
+                <div class="navitems">Jewellery & Accessories</div>
+                <div class="navitems">Bags & Footwear</div>
+                <div class="navitems">Electronics</div>
+            </div>
+        </div>
+        <hr>
+    </nav>
+  </body>
+  <script src="https://kit.fontawesome.com/63f68e8d12.js" crossorigin="anonymous"></script>
+</html>
