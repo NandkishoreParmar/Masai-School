@@ -1,0 +1,40 @@
+.timer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .timer__text {
+    font-size: 16px;
+  }
+  
+  .timer__bar {
+    width: 100px;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .timer__bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4CAF50;
+    animation: fill 10s linear forwards;
+  }
+  
+  @keyframes fill {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
