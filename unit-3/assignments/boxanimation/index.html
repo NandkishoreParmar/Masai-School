@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positioned Boxes</title>
+    <style>
+        .container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            margin: auto;
+            border: 2px solid;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        #box1 {
+            top: 10px;
+            left: 10px;
+            animation: expandToCenterLeft 1.5s forwards;
+        }
+        #box2 {
+            top: 110px;
+            right: 0px;
+            animation: expandToCenterRight 1.5s forwards;
+        }
+        #box3 {
+            top: 240px;
+            left: 10px;
+            animation: expandToCenterLeft 1.5s forwards;
+        }
+        #box4 {
+            top: 380px;
+            right: 0px;
+            animation: expandToCenterRight 1.5s forwards;
+        }
+        @keyframes expandToCenterLeft {
+            0% {
+                width: 0px;
+                left: 0px;
+            }
+            100% {
+                width: calc(50% - 20px);
+                left: 0px;
+            }
+        }
+        @keyframes expandToCenterRight {
+            0% {
+                width: 0px;
+                right: 0px;
+            }
+            100% {
+                width: calc(50% - 20px);
+                right: 0px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="box1" class="box">Box-1</div>
+        <div id="box2" class="box">Box-2</div>
+        <div id="box3" class="box">Box-3</div>
+        <div id="box4" class="box">Box-4</div>
+    </div>
+</body>
+</html>
