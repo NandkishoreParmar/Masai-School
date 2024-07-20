@@ -1,0 +1,33 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.outer-container {
+    width: 80%;
+    height: 80%;
+    border: 2px solid #000;
+    overflow: auto; /* Allow scrolling in the outer container */
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.sticky-element {
+    position: sticky;
+    top: 0;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 2px solid #000;
+    z-index: 1; /* Ensure the sticky element is above the scrolling content */
+}
+
+.scrollable-content {
+    padding: 10px;
+}

@@ -1,0 +1,23 @@
+/* Styles for the first list */
+ul.first-list li:nth-child(odd) {
+    color: red;
+}
+
+ul.first-list li:nth-child(even) {
+    color: black;
+}
+
+/* Styles for the second list */
+ul.second-list li {
+    color: magenta;
+}
+
+/* Common styles for both lists */
+ul {
+    list-style-type: disc;
+    margin: 10px 0;
+}
+
+li {
+    margin: 5px 0;
+}
