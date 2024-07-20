@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .container {
+            flex: 1 1 200px; /* Adjusts flex-grow, flex-shrink, and flex-basis */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: rgb(96, 96, 61);
+        }
+
+        ul {
+            list-style-type: disc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        ul.first-list li:nth-child(odd) {
+            color: red;
+        }
+
+        ul.first-list li:nth-child(even) {
+            color: black;
+        }
+
+        ul.second-list li {
+            color: magenta;
+        }
+
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <ul class="first-list">
+                <li>item-1</li>
+                <li>item-2</li>
+                <li>item-3</li>
+                <li>item-4</li>
+                <li>item-5</li>
+                <li>item-6</li>
+                <li>item-7</li>
+                <li>item-8</li>
+                <li>item-9</li>
+                <li>item-10</li>
+            </ul>
+        </div>
+
+        <div class="container">
+            <ul class="second-list">
+                <li>item-1</li>
+                <li>item-2</li>
+                <li>item-3</li>
+                <li>item-4</li>
+                <li>item-5</li>
+                <li>item-6</li>
+                <li>item-7</li>
+                <li>item-8</li>
+                <li>item-9</li>
+                <li>item-10</li>
+            </ul>
+        </div>
+        <div class="container">
+            <ul class="second-list">
+                <li>item-1</li>
+                <li>item-2</li>
+                <li>item-3</li>
+                <li>item-4</li>
+                <li>item-5</li>
+                <li>item-6</li>
+                <li>item-7</li>
+                <li>item-8</li>
+                <li>item-9</li>
+                <li>item-10</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
