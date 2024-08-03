@@ -1,0 +1,7 @@
+class overview
+     
+push()                     slice()                          =>javaScript  Extension
+pop()                      indexOf()
+shift()                    includes()     
+unshift()                  join()
+concat()                   splice()
