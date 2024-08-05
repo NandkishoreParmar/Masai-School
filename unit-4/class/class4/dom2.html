@@ -10,6 +10,255 @@
 </body>
 </html>
 <script>
+    // ctivity 1: Displaying a List of Products Using map
+
+const products = [
+    { id: 1, name: 'Laptop', price: 1000 },
+    { id: 2, name: 'Phone', price: 500 },
+    { id: 3, name: 'Tablet', price: 700 }
+];
+
+const productList = document.getElementById('productList');
+
+products.map(product => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${product.name} - $${product.price}`;
+    productList.appendChild(listItem);
+});
+
+// tivity 2: Filtering Products by Price
+
+const maxPrice = 700;
+
+const filteredProducts = products.filter(product => product.price <= maxPrice);
+
+filteredProducts.forEach(product => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${product.name} - $${product.price}`;
+    productList.appendChild(listItem);
+});
+
+
+// ity 3: Calculating Total Price Using reduce
+
+const totalPrice = products.reduce((total, product) => total + product.price, 0);
+
+const totalElement = document.createElement('p');
+totalElement.textContent = `Total Price: $${totalPrice}`;
+document.body.appendChild(totalElement);
+
+// ivity 4: Sorting Products by Name
+
+const sortedProducts = products.sort((a, b) => a.name.localeCompare(b.name));
+
+sortedProducts.forEach(product => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${product.name} - $${product.price}`;
+    productList.appendChild(listItem);
+});
+
+// vity 5: Interactive Data Visualization
+// Goal: Create a dynamic bar chart using map and reduce.
+
+<div id="chart"></div>
+
+
+const data = [
+    { category: 'A', value: 30 },
+    { category: 'B', value: 80 },
+    { category: 'C', value: 45 },
+    { category: 'D', value: 60 },
+    { category: 'E', value: 20 },
+    { category: 'F', value: 90 },
+    { category: 'G', value: 55 }
+];
+
+const chart = document.getElementById('chart');
+
+data.map(item => {
+    const bar = document.createElement('div');
+    bar.style.width = `${item.value * 3}px`;
+    bar.style.height = '20px';
+    bar.style.background = 'blue';
+    bar.style.margin = '2px';
+    bar.textContent = `${item.category}: ${item.value}`;
+    chart.appendChild(bar);
+});
+
+// ctivity 6: Dynamic Content Filtering and Sorting
+// Goal: Create a dynamic product catalog with filtering and sorting capabilities.
+<input type="text" id="search" placeholder="Search products...">
+<select id="sort">
+    <option value="asc">Price: Low to High</option>
+    <option value="desc">Price: High to Low</option>
+</select>
+<ul id="productList"></ul>
+
+
+const products = [
+    { id: 1, name: 'Laptop', price: 1000 },
+    { id: 2, name: 'Phone', price: 500 },
+    { id: 3, name: 'Tablet', price: 700 },
+    { id: 4, name: 'Monitor', price: 300 },
+    { id: 5, name: 'Keyboard', price: 50 }
+];
+
+const productList = document.getElementById('productList');
+const searchInput = document.getElementById('search');
+const sortSelect = document.getElementById('sort');
+
+function displayProducts(filteredProducts) {
+    productList.innerHTML = '';
+    filteredProducts.forEach(product => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${product.name} - $${product.price}`;
+        productList.appendChild(listItem);
+    });
+}
+
+function filterAndSortProducts() {
+    let filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchInput.value.toLowerCase())
+    );
+    if (sortSelect.value === 'asc') {
+        filteredProducts.sort((a, b) => a.price - b.price);
+    } else {
+        filteredProducts.sort((a, b) => b.price - a.price);
+    }
+    displayProducts(filteredProducts);
+}
+
+searchInput.addEventListener('input', filterAndSortProducts);
+sortSelect.addEventListener('change', filterAndSortProducts);
+
+filterAndSortProducts();
+
+// Activity 7: Complex Form Handling with Validation and Aggregation
+// Goal: Validate form inputs and aggregate data using reduce.
+
+<form id="orderForm">
+    <label for="product">Product:</label>
+    <select id="product">
+        <option value="Laptop">Laptop</option>
+        <option value="Phone">Phone</option>
+        <option value="Tablet">Tablet</option>
+    </select>
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" min="1">
+    <button type="submit">Add to Cart</button>
+</form>
+<ul id="cart"></ul>
+<p id="totalPrice"></p>
+
+// javascriptCopy code
+const orderForm = document.getElementById('orderForm');
+const cart = document.getElementById('cart');
+const totalPriceElement = document.getElementById('totalPrice');
+
+let cartItems = [];
+
+orderForm.addEventListener('submit', event => {
+    event.preventDefault();
+    const product = event.target.product.value;
+    const quantity = parseInt(event.target.quantity.value);
+    if (quantity > 0) {
+        cartItems.push({ product, quantity });
+        displayCartItems();
+    }
+});
+
+function displayCartItems() {
+    cart.innerHTML = '';
+    cartItems.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${item.product} x ${item.quantity}`;
+        cart.appendChild(listItem);
+    });
+    const totalPrice = cartItems.reduce((total, item) => total + item.quantity * getProductPrice(item.product), 0);
+    totalPriceElement.textContent = `Total Price: $${totalPrice}`;
+}
+
+function getProductPrice(product) {
+    switch (product) {
+        case 'Laptop': return 1000;
+        case 'Phone': return 500;
+        case 'Tablet': return 700;
+        default: return 0;
+    }
+}
+
+// Working with Forms in the DOM
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+        <button type="submit">Submit</button>
+    </form>
+    <ul id="dataList"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+JavaScript (script.js)
+
+// Define an array to store form data
+const dataArray = [];
+
+// Function to handle form submission
+function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Get input values from the form
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+
+    const name = nameInput.value;
+    const email = emailInput.value;
+
+    // Create an object with form data
+    const formData = {
+        name: name,
+        email: email
+    };
+
+    // Push the object into the data array
+    dataArray.push(formData);
+
+    // Clear form fields after submission
+    nameInput.value = '';
+    emailInput.value = '';
+
+    // Call function to display data
+    showData();
+}
+
+// Function to display data in the DOM
+function showData() {
+    const dataList = document.getElementById('dataList');
+    dataList.innerHTML = ''; // Clear previous data
+
+    // Iterate over the data array and create list items
+    dataArray.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `Name: ${item.name}, Email: ${item.email}`;
+        dataList.appendChild(listItem);
+    });
+}
+
+// Add event listener for form submission
+const form = document.getElementById('myForm');
+form.addEventListener('submit', handleFormSubmit);
 
 
 </script>
