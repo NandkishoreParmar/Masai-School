@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ylw{
+            border: 2px solid ;
+            border-radius: 2px ;
+            text-decoration: dotted;
+            background-color: aqua;
+            margin-top: 20px;
+            width: 200px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>Welcome to DOM</h1>
+    <p id="dhoni">I am Dhoni , i am from Chennai</p>
+    
+    <p id="dhoni1">I am Dhoni1 , i am from Mumbai</p>
+    <p id="dhoni2">I am Dhoni2 , i am from Mumbai</p>
+    <p id="dhoni3">I am Dhoni3 , i am from Mumbai</p>
+
+    <button onclick="change()">change place of dhoni</button> -->
+
+
+
+
+
+     <p>I am Nandkishore</p>
+    <button onclick="textchange()">change text</button>
+
+
+
+<script>
+    // console.log("welcome to js ")
+    // function change(){
+    //     console.log("submitted");
+    // }
+    // let ans = document.getElementById("dhoni").textContent
+    // console.log(ans);
+    
+
+    // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+    // function change(){
+    //     document.getElementById("dhoni").innerHTML = "<h1>I am Nandkishore , i am from Indore </h1>"
+        
+        
+    // }
+    // let res = document.querySelectorAll("p")
+    //     // console.log(res[1]);
+    //     res.forEach(function(ele){
+    //         console.log(ele);
+            
+    //     })
+    
+    // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+function textchange(){
+    let ptag = document.querySelector("p")
+    ptag.innerText = "i am Parmar"
+    // ptag.style.color = "red"
+    // ptag.style.fontSize = "40px"
+    ptag.className = "ylw"
+    // ptag.setAttribute("class","ylw")    same as class name and id name 
+}
+
+
+</script>

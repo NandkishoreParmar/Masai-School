@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ylw{
+            border: 2px solid ;
+            border-radius: 2px ;
+            text-decoration: dotted;
+            background-color: aqua;
+            margin-top: 20px;
+            width: 200px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <p>I am from Ajanda</p>
+    <button>change text</button>
+
+</body>
+</html>
+<script>
+
+function textchange(){
+    let ptag = document.querySelector("p")
+    ptag.innerText = "i am Parmar"
+    // ptag.style.color = "red"
+    // ptag.style.fontSize = "40px"
+    ptag.className = "ylw"
+    // ptag.setAttribute("class","ylw")    same as class name and id name 
+}
+
+
+
+// addEventlistener(event ,callbackfunction)
+document.querySelector('button').addEventListener("click",textchange)
+
+</script>

@@ -25,7 +25,7 @@ function averageSalary(employees1) {
     for (const { salary } of employees1) {
       totalSalary += salary;
     }
-    return totalSalary / employees.length;
+    return totalSalary / employees1.length;
   }
   
   const employees1 = [

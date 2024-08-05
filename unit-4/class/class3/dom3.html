@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+
+
+
+// let name1 = document.createElement('h1')
+// name1.innerText = "HElllo"
+
+// let name2 = document.createElement('h1')
+// name2.innerText = "Nk"
+// let name3 = document.createElement('h1')
+// name3.innerText = "pk"
+// let name4 = document.createElement('h1')
+// name4.innerText = "sk"
+
+
+// document.querySelector('body').append(name1,name2,name3,name4)
+
+// let names = ["bharat","Nandkishore","mayur","rahul"]
+// for (let i=0; i<names.length; i++){
+//     let name = document.createElement('h1')
+//     name.innerText = names[i]
+//     document.querySelector('body').append(name)
+// }
+
+
+
+let names = [{student:"bh"},{student:"nk"},{student:"gc"},{student:"gk"}]
+
+names.forEach(function(ele){
+    let name = document.createElement('h1')
+    name.innerText = ele.student
+    document.querySelector('body').append(name)
+})
+
+
+</script>
