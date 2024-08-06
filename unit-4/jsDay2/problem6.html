@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Higher-Order Functions Interactive Assistant</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    .prompt {
+      margin-bottom: 20px;
+    }
+    .prompt input {
+      width: calc(100% - 10px);
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .prompt button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      background-color: #007BFF;
+      color: #fff;
+      cursor: pointer;
+    }
+    .prompt button:hover {
+      background-color: #0056b3;
+    }
+    .output {
+      padding: 10px;
+      background-color: #e9ecef;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Higher-Order Functions Interactive Assistant</h1>
+  <div class="container">
+    <div class="prompt">
+      <h2>Double Numbers (map)</h2>
+      <input id="mapInput" type="text" placeholder="Enter numbers separated by spaces">
+      <button onclick="handleMap()">Double Numbers</button>
+      <div class="output" id="mapOutput"></div>
+    </div>
+    <div class="prompt">
+      <h2>Filter Even Numbers (filter)</h2>
+      <input id="filterInput" type="text" placeholder="Enter numbers separated by commas">
+      <button onclick="handleFilter()">Filter Even Numbers</button>
+      <div class="output" id="filterOutput"></div>
+    </div>
+    <div class="prompt">
+      <h2>Sum Numbers (reduce)</h2>
+      <input id="reduceInput" type="text" placeholder="Enter numbers separated by semicolons">
+      <button onclick="handleReduce()">Sum Numbers</button>
+      <div class="output" id="reduceOutput"></div>
+    </div>
+  </div>
+
+  <script>
+    function doubleNumbers(input) {
+      if (input.trim() === '') {
+        return [];
+      }
+
+      const numbers = input.split(' ').map(Number);
+      
+      if (numbers.some(isNaN)) {
+        throw new Error('Invalid input: please enter numbers separated by spaces.');
+      }
+
+      const doubled = numbers.map(num => num * 2);
+      return doubled;
+    }
+
+    function filterEvenNumbers(input) {
+      if (input.trim() === '') {
+        return [];
+      }
+
+      const numbers = input.split(',').map(Number);
+      
+      if (numbers.some(isNaN)) {
+        throw new Error('Invalid input: please enter integers separated by commas.');
+      }
+
+      const evens = numbers.filter(num => num % 2 === 0);
+      return evens;
+    }
+
+    function sumNumbers(input) {
+      if (input.trim() === '') {
+        return 0;
+      }
+
+      const numbers = input.split(';').map(Number);
+      
+      if (numbers.some(isNaN)) {
+        throw new Error('Invalid input: please enter numbers separated by semicolons.');
+      }
+
+      const sum = numbers.reduce((acc, num) => acc + num, 0);
+      return sum;
+    }
+
+    function handleMap() {
+      const input = document.getElementById('mapInput').value;
+      try {
+        const result = doubleNumbers(input);
+        document.getElementById('mapOutput').innerText = JSON.stringify(result);
+      } catch (error) {
+        document.getElementById('mapOutput').innerText = error.message;
+      }
+    }
+
+    function handleFilter() {
+      const input = document.getElementById('filterInput').value;
+      try {
+        const result = filterEvenNumbers(input);
+        document.getElementById('filterOutput').innerText = JSON.stringify(result);
+      } catch (error) {
+        document.getElementById('filterOutput').innerText = error.message;
+      }
+    }
+
+    function handleReduce() {
+      const input = document.getElementById('reduceInput').value;
+      try {
+        const result = sumNumbers(input);
+        document.getElementById('reduceOutput').innerText = result;
+      } catch (error) {
+        document.getElementById('reduceOutput').innerText = error.message;
+      }
+    }
+  </script>
+</body>
+</html>
