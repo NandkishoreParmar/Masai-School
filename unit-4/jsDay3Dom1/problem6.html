@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Image Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    select {
+      margin: 10px;
+      padding: 5px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Select an Animal</h1>
+  
+  <!-- Dropdown for selecting animals -->
+  <select id="animalSelect">
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+    <option value="elephant">Elephant</option>
+    <option value="lion">Lion</option>
+  </select>
+
+  <!-- Image element to display the selected animal -->
+  <img id="animalImage" src="images/dog.jpg" alt="Animal Image">
+
+  <script>
+    // JavaScript to handle image change
+    document.getElementById('animalSelect').addEventListener('change', function() {
+      const selectedAnimal = this.value;
+      const imageElement = document.getElementById('animalImage');
+
+      // Update the image source based on the selected animal
+      imageElement.src = `images/${selectedAnimal}.jpg`;
+    });
+  </script>
+</body>
+</html>
