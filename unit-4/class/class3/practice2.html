@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cards{
+            /* width: 300px; */
+            /* border: 2px solid; */
+            border-radius: 10px;
+        }
+        #div{
+            border: 2px solid;
+            display: grid;
+            grid-template-columns: 400px 400px 400px;
+            margin: 10px;
+
+        }
+        .main{
+            border: 1px solid green;
+            width: 200px;
+            /* display: flex;   */
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Cards</h2>
+    <div>
+        <select name="select" id="sort">
+            <option value="Default">Default</option>
+            <option value="low">Low to High</option>
+            <option value="high">High to Low</option>
+        </select>
+    </div>
+    <div id="div">
+       
+    </div>
+</body>
+</html>
+
+<script>
+    const products = [
+    { id: 1, name: 'Laptop', price: 1000 },
+    { id: 2, name: 'Phone', price: 500 },
+    { id: 3, name: 'Tablet', price: 700 },
+    { id: 4, name: 'Monitor', price: 300 },
+    { id: 5, name: 'Keyboard', price: 50 },
+    { id: 6, name: 'Laptop', price: 100 },
+    { id: 7, name: 'Phone', price: 506 },
+    { id: 8, name: 'Tablet', price: 600 },
+    { id: 9, name: 'Monitor', price: 1500 },
+    { id: 10, name: 'Keyboard', price: 1200 }
+];
+let cont = document.querySelector('#div')
+function displayPro(products){
+products.forEach(function(ele){
+    let cards = document.createElement('div')
+    cards.className = "main"
+    let name = document.createElement("h1")
+    name.innerText = ele.name
+    name.className = "cards"
+    let price = document.createElement('p')
+    price.innerText = `$${ele.price}`
+
+    cards.append(name,price)
+    cont.append(cards)
+
+})
+}
+
+displayPro(products)
+
+function sortProduct(){
+    // console.log("inside the sorting function");
+    let selectvalue = document.querySelector("#sort").value
+    // console.log(x);
+    if (selectvalue === "low"){
+          products.sort((a,b) => a.price - b.price)
+    }
+    else if (selectvalue === "high"){
+        products.sort((a,b) => b.price - a.price)
+    }
+
+        displayPro(products)
+    
+}
+document.querySelector("#sort").addEventListener("change",sortProduct)
+
+</script>

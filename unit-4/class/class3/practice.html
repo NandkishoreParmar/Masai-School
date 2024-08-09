@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- 
+    <h1>I am Nandkishore</h1>
+    <button >Change Name</button>
+     -->
+    <div>
+        <h3>Files</h3>
+        <button>Show</button>
+    </div>
+</body>
+
+</html>
+<script>
+    let names = [{ student: "bh" }, { student: "nk" }, { student: "gc" }, { student: "gk" }]
+    function red() {
+        names.forEach(function (ele) {
+            let name = document.createElement('p')
+            name.innerText = ele.student
+            document.querySelector('body').append(name)
+            
+        })
+    }
+    document.querySelector('button').addEventListener("click", red)
+
+
+</script>
