@@ -5,20 +5,24 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 }
 
 .timer-container {
     text-align: center;
-    background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 #timer-display {
     font-size: 3em;
     margin-bottom: 20px;
+    color: black;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -26,34 +30,26 @@ button {
     padding: 10px 20px;
     margin: 5px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    transform: scale(1.05);
 }
 
 #start-button {
-    background-color: #28a745;
-    color: #fff;
-}
-
-#start-button:hover {
-    background-color: #218838;
+    background: linear-gradient(135deg, #28a745 0%, #4caf50 100%);
 }
 
 #stop-button {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-#stop-button:hover {
-    background-color: #c82333;
+    background: linear-gradient(135deg, #dc3545 0%, #ff6b6b 100%);
 }
 
 #reset-button {
-    background-color: #007bff;
-    color: #fff;
-}
-
-#reset-button:hover {
-    background-color: #0069d9;
+    background: linear-gradient(135deg, #007bff 0%, #33a1fd 100%);
 }
