@@ -54,5 +54,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    window.removeReminder = removeReminder;
+    window.removeReminder = removeReminder; 
 });
