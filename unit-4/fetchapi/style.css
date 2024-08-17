@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Light gradient background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: black;
+}
+
+#app {
+    text-align: center;
+}
+
+#fetch-users {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border to enhance glass effect */
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    backdrop-filter: blur(10px); /* Blur effect */
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37); /* Soft shadow */
+    transition: background 0.3s ease;
+}
+
+#fetch-users:hover {
+    background: rgba(255, 255, 255, 0.25); /* Slightly more opaque on hover */
+}
+
+#user-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.user-card {
+    background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37); /* Soft shadow */
+    backdrop-filter: blur(10px); /* Blur effect */
+    width: 200px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.18); /* Border to enhance glass effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 12px 36px rgba(31, 38, 135, 0.57); /* More pronounced shadow on hover */
+}
+
+.user-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.4); /* Border for image */
+}
+
+.user-card h2 {
+    font-size: 18px;
+    margin: 10px 0 5px;
+    color: #ffffff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow for better readability */
+}
+
+.user-card p {
+    font-size: 14px;
+    color: #dddddd;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Text shadow for better readability */
+}
