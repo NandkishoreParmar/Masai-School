@@ -36,3 +36,5 @@ const employees4 = [
 ];
 
 console.log(destructuringToSwap(employees4)); // Output: [ { name: 'Alex Johnson', age: 35, department: 'IT', salary: 70000 }, { name: 'Jane Smith', age: 28, department: 'Finance', salary: 60000 }, { name: 'John Doe', age: 30, department: 'HR', salary: 50000 } ]
+
+
