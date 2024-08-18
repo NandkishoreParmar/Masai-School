@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 20%;
+        }
+        #cont{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr ;
+            /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+        }
+    </style>
+</head>
+<body>
+    <div id="cont">
+      
+    </div>
+    
+</body>
+</html>
+
+<script>
+
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow'
+};
+
+fetch("https://fakestoreapi.com/products", requestOptions)
+  .then(response => response.json())
+  .then(result => displayProducts(result))
+  .catch(error => console.log('error', error));
+
+function displayProducts(result){
+    // console.log("hekkoi");
+    let data = result.map((ele)=>
+    `
+        <div>
+        <img src="${ele.image}" alt="">
+        <p>${ele.price}</p>
+      </div>
+    `
+    ).join("")
+    
+    document.querySelector("#cont").innerHTML = data
+
+}
+</script>

@@ -1,0 +1,81 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>images</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr> -->
+
+        </tbody>
+    </table>
+    
+</body>
+</html>
+<script>
+
+// console.log(fetch())
+// fetch("https://fakestoreapi.com/products")
+// .then((res)=>(res.json()))
+// .then((data)=> displaytable(data))
+// .catch((err)=> console.log(err))
+// console.log("hello world");
+
+// function displaytable(data) {
+//     console.log(data);
+//     data.forEach((ele)=>{
+//         let tr = document.createElement("tr")
+//         let td1 = document.createElement("td")
+//         td1.innerText = ele.id
+//         let td2 = document.createElement("td")
+//         td2.innerText = ele.title
+//         let td3 = document.createElement("td")
+//         td3.innerText = ele.price
+
+//         tr.append(td1,td2,td3)
+//         document.querySelector("tbody").append(tr)
+    
+//     })
+// }
+
+function displaytable(data){
+    let row = data.map(ele => 
+        `<tr>
+                <td>${ele.id}</td>
+                <td>${ele.title}</td>
+                <td>${ele.price}</td>
+                <td> <img src="${ele.image}" alt="Girl in a jacket" width="50" height="50"> </td>
+        </tr>`
+    ).join("");
+    document.querySelector("tbody").innerHTML = row
+}
+
+
+const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch("https://fakestoreapi.com/products", requestOptions)
+  .then((response) => response.json())
+  .then((data) => displaytable(data))
+  .catch((error) => console.error(error));
+</script>
