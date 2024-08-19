@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Organizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    #cont{
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        
+    }
+    #cont>div{
+        margin: 20px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        padding: 10px;
+    }
+    button{
+        padding: 5px 15px;
+        border-radius: 5px;
+        background-color: aqua;
+        cursor: pointer;
+
+    }
+</style>
+<body>
+    <!-- <div id="app">
+        <div id="folders"></div>
+        <div id="files"></div>
+        <div id="bin"></div>
+    </div> -->
+    <!-- <script src="script.js"></script> -->
+
+    <div id="cont">
+        
+    </div>
+</body>
+</html>
+<script>
+function fetchdata(){
+    const requestOptions = {
+  method: "GET",
+  redirect: "follow"
+};
+
+fetch("https://filesystem-fb197-default-rtdb.firebaseio.com/files.json", requestOptions)
+  .then((response) => response.json())
+  .then((data) => displaydata(data))
+  .catch((error) => console.error(error));
+
+}
+fetchdata()
+function displaydata(data){
+    // console.log(data);
+    data.map((ele)=>{
+        console.log(ele)
+        let card = document.createElement("div")
+        card.innerHTML = 
+`
+        <h3>File Id : ${ele.id}</h3>
+        <h1>File Name: ${ele.name}</h1>
+        <h2>File Type: ${ele.type}</h2>
+        <button>Edit</button>
+        <button onclick= "deletefile(${ele.id})">Delete</button>
+`
+document.querySelector("#cont").append(card)
+        
+    }) 
+}
+
+function deleteFile(id) {
+    const requestOptions = {
+        method: "DELETE",
+        redirect: "follow"
+    };
+
+    fetch(`https://filesystem-fb197-default-rtdb.firebaseio.com/files/${id}.json`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Delete result:', result);
+            // Refresh the data after deletion
+            fetchdata();
+        })
+        .catch((error) => console.error('Error deleting file:', error));
+}
+
+function editFile(id, newName, newType) {
+    const requestOptions = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: newName,
+            type: newType
+        })
+    };
+
+    fetch(`https://filesystem-fb197-default-rtdb.firebaseio.com/files/${id}.json`, requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log('Edit result:', result);
+            // Refresh the data after editing
+            fetchdata();
+        })
+        .catch((error) => console.error('Error editing file:', error));
+}
+function sortFilesByType() {
+    const requestOptions = {
+        method: "GET",
+        redirect: "follow"
+    };
+
+    fetch("https://filesystem-fb197-default-rtdb.firebaseio.com/files.json", requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+            if (Array.isArray(data)) {
+                const sortedData = data.sort((a, b) => a.type.localeCompare(b.type));
+                displaydata(sortedData);
+            } else {
+                console.error('Expected an array of data, but received:', data);
+            }
+        })
+        .catch((error) => console.error('Error fetching data:', error));
+}
+
+
+</script>
