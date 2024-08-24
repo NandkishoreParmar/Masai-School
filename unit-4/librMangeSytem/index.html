@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        /* Add some basic styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 10px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h2>Library Management System</h2>
+
+    <!-- Add Book Form -->
+    <div class="form-group">
+        <h3>Add New Book</h3>
+        <form id="addBookForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" required>
+            <label for="author">Author:</label>
+            <input type="text" id="author" required>
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" required>
+            <label for="publishedYear">Published Year:</label>
+            <input type="number" id="publishedYear" required>
+            <label for="available">Available:</label>
+            <select id="available">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <button type="submit">Add Book</button>
+        </form>
+    </div>
+
+    <!-- Display Books -->
+    <h3>Book List</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Published Year</th>
+                <th>Available</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="bookList">
+            <!-- Book entries will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-database.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Reference to books in the database
+        const booksRef = db.ref('books');
+
+        // Add Book
+        document.getElementById('addBookForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const newBook = {
+                title: document.getElementById('title').value,
+                author: document.getElementById('author').value,
+                genre: document.getElementById('genre').value,
+                publishedYear: document.getElementById('publishedYear').value,
+                available: document.getElementById('available').value === 'true'
+            };
+
+            booksRef.push(newBook);
+
+            // Clear form
+            e.target.reset();
+        });
+
+        // Display Books
+        booksRef.on('value', function(snapshot) {
+            const books = snapshot.val();
+            const bookList = document.getElementById('bookList');
+            bookList.innerHTML = '';
+
+            for (let id in books) {
+                const book = books[id];
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.genre}</td>
+                    <td>${book.publishedYear}</td>
+                    <td>${book.available ? 'Yes' : 'No'}</td>
+                    <td><button onclick="deleteBook('${id}')">Delete</button></td>
+                `;
+                bookList.appendChild(tr);
+            }
+        });
+
+        // Delete Book
+        function deleteBook(id) {
+            booksRef.child(id).remove();
+        }
+    </script>
+</body>
+</html>
