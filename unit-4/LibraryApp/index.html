@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .library {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .button {
+            padding: 12px 18px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: #eaf1f8;
+            border-radius: 5px;
+            color: #2c3e50;
+            font-size: 16px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            text-align: left;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .result::before {
+            content: "Results:";
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #34495e;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="library">
+        <h1>Library Management System</h1>
+        <button class="button" onclick="displayAllBooks()">Display All Books</button>
+        <button class="button" onclick="filterBooks()">Filter Books After 1950</button>
+        <button class="button" onclick="totalBooks()">Total Number of Books</button>
+        <button class="button" onclick="averagePublicationYear()">Average Publication Year</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        class Book {
+            constructor(title, author, year, genre) {
+                this.title = title;
+                this.author = author;
+                this.year = year;
+                this.genre = genre;
+            }
+
+            getInfo() {
+                return `${this.title} by ${this.author}, published in ${this.year} (Genre: ${this.genre})`;
+            }
+        }
+
+        class Library {
+            constructor() {
+                this.books = [];
+            }
+
+            addBook(book) {
+                this.books.push(book);
+            }
+
+            filterBooksByYear(year) {
+                return this.books.filter(book => book.year > year);
+            }
+
+            getAllBookTitles() {
+                return this.books.map(book => book.title);
+            }
+
+            getTotalBooks() {
+                return this.books.reduce((total, book) => total + 1, 0);
+            }
+
+            getAveragePublicationYear() {
+                const totalYears = this.books.reduce((sum, book) => sum + book.year, 0);
+                return totalYears / this.books.length;
+            }
+        }
+
+        function createBook(title, author, year, genre) {
+            return new Book(title, author, year, genre);
+        }
+
+        const myLibrary = new Library();
+
+        const book1 = createBook("To Kill a Mockingbird", "Harper Lee", 1960, "Fiction");
+        const book2 = createBook("1984", "George Orwell", 1949, "Dystopian");
+        const book3 = createBook("The Great Gatsby", "F. Scott Fitzgerald", 1925, "Classic");
+        const book4 = createBook("The Catcher in the Rye", "J.D. Salinger", 1951, "Fiction");
+
+        myLibrary.addBook(book1);
+        myLibrary.addBook(book2);
+        myLibrary.addBook(book3);
+        myLibrary.addBook(book4);
+
+        function displayAllBooks() {
+            const titles = myLibrary.getAllBookTitles().join(", ");
+            document.getElementById("result").innerText = `All book titles: ${titles}`;
+        }
+
+        function filterBooks() {
+            const filteredBooks = myLibrary.filterBooksByYear(1950)
+                .map(book => book.getInfo())
+                .join("\n");
+            document.getElementById("result").innerText = `Books published after 1950:\n${filteredBooks}`;
+        }
+
+        function totalBooks() {
+            const total = myLibrary.getTotalBooks();
+            document.getElementById("result").innerText = `Total number of books: ${total}`;
+        }
+
+        function averagePublicationYear() {
+            const avgYear = myLibrary.getAveragePublicationYear().toFixed(2);
+            document.getElementById("result").innerText = `Average publication year: ${avgYear}`;
+        }
+    </script>
+
+</body>
+</html>
