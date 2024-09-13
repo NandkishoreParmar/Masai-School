@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            height: 400px;
+            width: 500px;
+            margin-bottom: 50px;
+        }
+        button{
+            margin-left: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="https://cdn.pixabay.com/photo/2022/07/18/19/57/dog-7330712_1280.jpg" alt="">
+    </div>
+
+    <button id="like">Like</button>
+    <button id="dislike">DisLike</button>
+    <div>
+        <h3 id="likes"></h3>
+        <h3 id="dislikes"></h3>
+    </div>
+</body>
+</html>
+<script>
+// let nums = [{name:"h1"},{name:"h2"}]
+// let arr= JSON.stringify(nums)
+// localStorage.setItem("arrs",arr)
+
+// let newarr = localStorage.getItem("arrs")
+// let orarr = JSON.parse(newarr)
+// console.log(orarr[0]);
+
+let num = 0;
+document.getElementById('like').addEventListener('click',function(){
+    num += 1
+    localStorage.setItem("like-count",num)
+let likes = document.getElementById('likes');
+let likeslo = localStorage.getItem("like-count")
+likes.innerHTML = `Likes : ${likeslo}`
+
+
+})
+let dis = 0
+document.getElementById('dislike').addEventListener('click',function(){
+    dis+=1
+    localStorage.setItem("dis-count",dis)
+    let dislikes = document.getElementById('dislikes')
+    dislikes.innerHTML = `DisLikes : ${dis}`
+})
+
+
+
+</script>
