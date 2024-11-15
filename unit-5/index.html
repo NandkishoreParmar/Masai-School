@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="main.js"></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <style>
+      .container {
+        width: 500px;
+        margin: auto;
+        padding: 20px;
+        border: 2px solid black;
+        justify-content: center;
+        text-align: center;
+      }
+      .output {
+        margin-top: 20px;
+        padding: 10px;
+        border: 1px solid black;
+        text-align: left;
+      }
+    </style>
+    <title>Job Portal Form</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = () => {
+        return (
+          <>
+            <JobPortal />
+          </>
+        );
+      };
+
+      const JobPortal = () => {
+        const [formData, setFormData] = React.useState({
+          companyName: '',
+          postedAt: '',
+          city: '',
+          location: '',
+          role: '',
+          level: '',
+          position: '',
+          language: '',
+          contractType: ''
+        });
+
+        const [savedData, setSavedData] = React.useState([]);
+
+        // Handling input changes
+        const handleChange = (e) => {
+          const { name, value } = e.target;
+          setFormData({ ...formData, [name]: value });
+        };
+
+        // Handling form submission
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          // Save data to local storage
+          const existingData = JSON.parse(localStorage.getItem('jobData')) || [];
+          const newData = [...existingData, formData];
+          localStorage.setItem('jobData', JSON.stringify(newData));
+
+          // Update saved data to display on the screen
+          setSavedData(newData);
+
+          // Clear form after submission
+          setFormData({
+            companyName: '',
+            postedAt: '',
+            city: '',
+            location: '',
+            role: '',
+            level: '',
+            position: '',
+            language: '',
+            contractType: ''
+          });
+        };
+
+        // Retrieving data from local storage on component mount
+        React.useEffect(() => {
+          const data = JSON.parse(localStorage.getItem('jobData'));
+          if (data) {
+            setSavedData(data);
+          }
+        }, []);
+
+        return (
+          <>
+            <div className="container">
+              <h1>Job Portal Form</h1>
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label>Company Name: </label>
+                  <input
+                    type="text"
+                    name="companyName"
+                    placeholder="Enter Company Name"
+                    value={formData.companyName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label>Posted At: </label>
+                  <input
+                    type="date"
+                    name="postedAt"
+                    value={formData.postedAt}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label>City: </label>
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="Enter city name"
+                    value={formData.city}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label>Location: </label>
+                  <input
+                    type="text"
+                    name="location"
+                    placeholder="Enter location"
+                    value={formData.location}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label>Role: </label>
+                  <select name="role" value={formData.role} onChange={handleChange}>
+                    <option value="">Select Role</option>
+                    <option value="Frontend">Frontend</option>
+                    <option value="Backend">Backend</option>
+                    <option value="FullStack">FullStack</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Level: </label>
+                  <select name="level" value={formData.level} onChange={handleChange}>
+                    <option value="">Select Level</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Senior">Senior</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Position: </label>
+                  <select name="position" value={formData.position} onChange={handleChange}>
+                    <option value="">Select Position</option>
+                    <option value="Backend Developer">Backend Developer</option>
+                    <option value="Junior Frontend Developer">Junior Frontend Developer</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Programming Language: </label>
+                  <input
+                    type="text"
+                    name="language"
+                    placeholder="Enter language"
+                    value={formData.language}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label>Contract Type: </label>
+                  <select
+                    name="contractType"
+                    value={formData.contractType}
+                    onChange={handleChange}
+                  >
+                    <option value="">Select Contract</option>
+                    <option value="FullTime">FullTime</option>
+                    <option value="PartTime">PartTime</option>
+                  </select>
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+
+              {/* Displaying saved data */}
+              <div className="output">
+                <h2>Saved Job Listings</h2>
+                <ul>
+                  {savedData.map((data, index) => (
+                    <li key={index}>
+                      <strong>Company Name:</strong> {data.companyName}, <strong>Posted At:</strong>{' '}
+                      {data.postedAt}, <strong>City:</strong> {data.city}, <strong>Location:</strong>{' '}
+                      {data.location}, <strong>Role:</strong> {data.role}, <strong>Level:</strong>{' '}
+                      {data.level}, <strong>Position:</strong> {data.position}, <strong>Programming
+                      Language:</strong> {data.language}, <strong>Contract Type:</strong>{' '}
+                      {data.contractType}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

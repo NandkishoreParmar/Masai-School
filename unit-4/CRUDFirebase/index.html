@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Firebase</title>
+    <style>
+        *{
+            position: relative;
+        }
+        #container{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            /* text-align: center; */
+            gap: 20px;
+            padding: 10px;
+        }
+        #container>div{
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 10px;
+        }
+        #container>div>h1{
+            color: teal;
+        }
+        button{
+            cursor: pointer;
+            padding: 5px 10px;
+            /* border: none; */
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        button:hover{
+            padding: 6px 11px;
+        }
+        nav{
+            display: flex;
+            /* flex-direction: row; */
+            gap: 30%;
+            /* margin: 20px; */
+            background-color: teal;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            opacity: 5;
+
+        }
+        a{
+            text-decoration: none;
+            color: black;
+
+        }
+        a:hover{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>  <a href="">Home</a></div>
+        <div><a href="crete.html">Create User</a></div>
+        <div><a href="">Cart</a></div>
+    </nav>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+<script src="index.js"></script>

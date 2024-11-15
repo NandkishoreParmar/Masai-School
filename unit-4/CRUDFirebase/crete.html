@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 30vh;
+        }
+form{
+        padding: 20px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        margin: auto;
+        justify-content: center;
+        text-align: center;
+    }
+
+    div{
+        margin: 20px;
+    }
+    </style>
+    
+</head>
+<body>
+    <form id="createUser" action="">
+        <div>
+            <label for="">Name: </label>
+            <input id="name" type="text" placeholder="Enter Your Name">
+        </div>
+        <div>
+            <label for="">Email: </label>
+            <input type="email" name="" id="email" placeholder="Enter your email">
+        </div>
+       <div>
+        <input type="submit" value="Submit">
+       </div>
+    </form>
+</body>
+</html>
+
+<script>
+
+// console.log("hello");
+document.getElementById('createUser').addEventListener('submit',submitform)
+
+function submitform(){
+    event.preventDefault();
+    let name = document.getElementById('name').value;
+    let email = document.getElementById('email').value;
+    let userID = Math.floor(Math.random()*10000+1)
+    console.log(name);
+    console.log(email);
+    console.log(userID);
+    var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "email": email,
+  "username": name
+});
+
+var requestOptions = {
+  method: 'PUT',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch(`https://crud-firebase-712a1-default-rtdb.firebaseio.com/users/${userID}.json`, requestOptions)
+  .then(response => response.json())
+//   .then(result => console.log(result))
+  .then(result => {
+    alert("User Created Successfully")
+    window.location.href="index.html"
+  }
+  )
+  .catch(error => console.log('error', error));
+    
+}
+
+</script>

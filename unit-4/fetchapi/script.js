@@ -2,7 +2,7 @@
 async function fetchUsers() {
     try {
         const response = await fetch('https://reqres.in/api/users?page=1');
-        if (!response.ok) {
+        if (!response.ok) { 
             throw new Error('Network response was not ok');
         }
         const data = await response.json();
