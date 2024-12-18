@@ -6,8 +6,7 @@ function hello(name,age){
         name: name,
         age: age,
         hello(){
-            console.log("heloo");
-            
+            console.log("heloo"); 
         }
     }
 }
